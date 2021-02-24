@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@material-ui/core';
+import ResponsiveDrawer from './components/screens/AdminDashboard'
 import theme from './theme.js'
+import {BrowserRouter} from 'react-router-dom';
 
 ReactDOM.render(
-  <React.StrictMode>
-  <ThemeProvider theme={theme}>
-    <App />
+  <BrowserRouter>
+    <ThemeProvider theme={theme}>
+        <ResponsiveDrawer />
     </ThemeProvider>
-  </React.StrictMode>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

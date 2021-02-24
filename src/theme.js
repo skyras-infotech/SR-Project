@@ -11,7 +11,7 @@ const theme = createMuiTheme({
     },
     typography:{
         fontFamily:[
-            'Montserrat',
+            'Fredoka One',
         ].join(','),
         button:{
             textTransform:"none",
