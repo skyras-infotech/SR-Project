@@ -18,7 +18,13 @@ const columns = [
     { field: 'mobile', headerName: 'Mobile No', width: 200, headerClassName: 'headerStyle' },
     { field: 'action', headerName: 'Actions', width: 300, headerClassName: 'headerStyle', renderCell: () => (
         <Grid container>
-          <Link to="/teacher/viewteachardetails">View</Link>
+          <Button
+                variant="contained"
+                color="primary"
+                size="small"
+                style={{backgroundColor:"lightgreen"}}>
+              <Link to="/teacher/view-teachar-details" style={{ color: "black", textDecoration: "none"}}>View</Link>
+          </Button>
           <Button
             variant="contained"
             color="primary"

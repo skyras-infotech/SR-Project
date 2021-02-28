@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from '@material-ui/core';
-import ResponsiveDrawer from './components/screens/AdminDashboard'
+import ResponsiveDrawer from './components/screens/Admin/AdminDashboard'
 import theme from './theme.js'
 import {BrowserRouter} from 'react-router-dom';
 

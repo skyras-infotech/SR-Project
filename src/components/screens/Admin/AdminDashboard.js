@@ -11,14 +11,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-import logo from '../../Images/logo.png'
-import person from '../../Images/person.jpg'
+import logo from '../../../Images/logo.png';
+import person from '../../../Images/person.jpg'
 import { ExpandMore } from '@material-ui/icons';
-import adminDashbardStyle from '../Styles/adminDashboardStyle';
-import dashboardRoutes from '../../routes';
-import theme from '../../theme'
+import adminDashbardStyle from '../../Styles/adminDashboardStyle';
+import dashboardRoutes from '../../../routes';
+import theme from '../../../theme'
 import {NavLink, withRouter,Switch,Route} from 'react-router-dom';
-import AdminTeacherTab from './AdminTeacherTab';
+import AdminTeacherTab from '../Admin/Teacher/AdminTeacherTab';
+import AdminStudentTab from '../Admin/Student/AdminStudentTab';
+import AdminParentTab from '../Admin/Parent/AdminParentTab';
+
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -151,8 +154,14 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
 
         <Switch>
-            <Route exact path="/teacher/viewteachardetails">
+            <Route exact path="/teacher/view-teachar-details">
                 <AdminTeacherTab val={true}/>
+            </Route>
+            <Route exact path="/student/view-student-details">
+                <AdminStudentTab val={true}/>
+            </Route>
+            <Route exact path="/parent/view-parent-details">
+                <AdminParentTab val={true}/>
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>

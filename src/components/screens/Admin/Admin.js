@@ -2,19 +2,19 @@ import React from 'react';
 import {Grid,Avatar, Paper} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import img1 from '../../Images/1.png'
-import img2 from '../../Images/2.png'
-import img3 from '../../Images/3.png'
-import img4 from '../../Images/4.png'
-import img5 from '../../Images/5.png'
-import img6 from '../../Images/6.png'
-import img7 from '../../Images/7.png'
-import img8 from '../../Images/8.png'
-import img9 from '../../Images/9.png'
-import img10 from '../../Images/10.png'
+import img1 from '../../../Images/1.png'
+import img3 from '../../../Images/3.png'
+import img4 from '../../../Images/4.png'
+import img5 from '../../../Images/5.png'
+import img6 from '../../../Images/6.png'
+import img2 from '../../../Images/2.png'
+import img7 from '../../../Images/7.png'
+import img8 from '../../../Images/8.png'
+import img9 from '../../../Images/9.png'
+import img10 from '../../../Images/10.png'
 import { ArrowForward,DoubleArrow } from '@material-ui/icons';
 import clsx from 'clsx';
-import adminDashbardStyle from '../Styles/adminDashboardStyle';
+import adminDashbardStyle from '../../Styles/adminDashboardStyle';
 
 const useStyles = makeStyles(adminDashbardStyle);
 

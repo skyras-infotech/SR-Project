@@ -3,7 +3,7 @@ import { RadioGroup,FormControlLabel,Radio, Grid, Select, makeStyles, InputAdorn
 import React from 'react';
 import clsx from 'clsx';
 import { Visibility,VisibilityOff } from '@material-ui/icons';
-import placeholder from '../../Images/placeholder.jpg';
+import placeholder from '../../../../Images/placeholder.jpg';
 
 
 const usesStyles = makeStyles((theme) => ({
@@ -84,7 +84,7 @@ function AdminTeacher () {
         <Grid container spacing={3} >
              <Grid item container spacing={3}>
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>First Name</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>First Name</Typography>
                         <TextField
                             required
                             id="firstName"
@@ -95,7 +95,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Middle Name</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Middle Name</Typography>
                     <TextField
                             id="middleName"
                             name="middleName"
@@ -105,7 +105,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Last Name</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Last Name</Typography>
                     <TextField
                             id="lastName"
                             name="lastName"
@@ -115,7 +115,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Gender</Typography>
+                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Gender</Typography>
                     <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleGender} className={classes.textColor}>
                         <Grid item>
                             <FormControlLabel value="male" control={<Radio color="black"/>} label="Male" />
@@ -125,7 +125,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Date of birth</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of birth</Typography>
                         <TextField
                             id="dob"
                             type="date"
@@ -140,7 +140,7 @@ function AdminTeacher () {
 
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Address</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Address</Typography>
                     <TextField
                             id="address"
                             name="address"
@@ -151,7 +151,7 @@ function AdminTeacher () {
 
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>City</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>City</Typography>
                     <TextField
                             id="city"
                             name="city"
@@ -162,7 +162,7 @@ function AdminTeacher () {
 
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>State</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>State</Typography>
                     <TextField
                             id="state"
                             name="state"
@@ -172,7 +172,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Zip Code</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Zip Code</Typography>
                     <TextField
                             id="zipcode"
                             name="zipcode"
@@ -182,7 +182,7 @@ function AdminTeacher () {
                 </Grid>  
                 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Class</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Class</Typography>
                         <FormControl variant="outlined" fullWidth>
                             <Select
                                 native
@@ -203,7 +203,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Mobile number</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Mobile number</Typography>
                     <TextField
                             id="mob"
                             name="mob"
@@ -216,7 +216,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Alternate mobile number</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Alternate mobile number</Typography>
                     <TextField
                             id="amob"
                             name="amob"
@@ -229,7 +229,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Phone</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Phone</Typography>
                     <TextField
                             id="phone"
                             name="phone"
@@ -239,7 +239,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Email</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Email</Typography>
                     <TextField
                             id="email"
                             name="email"
@@ -249,7 +249,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Working Hour</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Working Hour</Typography>
                         <FormControl variant="outlined" fullWidth>
                             <Select
                                 native
@@ -269,7 +269,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Position</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Position</Typography>
                     <TextField
                             id="position"
                             name="position"
@@ -279,7 +279,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Username</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Username</Typography>
                     <TextField
                             id="username"
                             name="username"
@@ -289,7 +289,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Password</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Password</Typography>
                         <FormControl fullWidth>
                             <OutlinedInput
                                 id="password"
@@ -312,7 +312,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Submitted Documents</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Submitted Documents</Typography>
                     <FormControl component="fieldset">
                         <FormGroup>
                         <FormControlLabel
@@ -332,7 +332,7 @@ function AdminTeacher () {
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h5" color="primary" className={clsx(classes.margin)}>Image</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Image</Typography>
                     <Grid item xs={12} container justify="space-between" alignItems="flex-start" spacing={5}>
                             <Grid item>
                                 <input

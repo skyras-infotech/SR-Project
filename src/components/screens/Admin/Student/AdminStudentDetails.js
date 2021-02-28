@@ -1,5 +1,5 @@
 import { Grid, makeStyles, TableContainer,TableCell,Table,TableRow,TableBody, Typography } from '@material-ui/core';
-import placeholder from '../../Images/placeholder.jpg';
+import placeholder from '../../../../Images/placeholder.jpg';
 import React from 'react';
 import clsx from 'clsx';
 import MailIcon from '@material-ui/icons/Mail';
@@ -43,9 +43,9 @@ function createData(name, colon, value, name1, colon1, value1) {
   }
   
   const rows = [
-    createData("Name", ":", "Bhavana Joshi", "Birthdate", ":","03-12-1998"),
-    createData("Gender", ":", "Female", "Class Name", ":","Class 1"),
-    createData("Subject Name", ":", "English, Marathi, Gujarati", "", "",""),
+    createData("Name", ":", "Parth Joshi", "Birthdate", ":","03-12-1998"),
+    createData("Gender", ":", "Male", "Roll No", ":","101"),
+    createData("Class Name", ":", "Class 1", "Section Name", ":","Section 1"),
 
   ];
 
@@ -56,7 +56,7 @@ function createData(name, colon, value, name1, colon1, value1) {
 
   ];
 
-export default function AdminTeacherDetails() {
+export default function AdminStudentDetails() {
 
     const classes = usesStyles();
 
@@ -67,10 +67,10 @@ export default function AdminTeacherDetails() {
                             <img src={placeholder} alt="Img" className={classes.imgOptionsSize}/> 
                     </Grid>
                     <Grid item direction="column" align="left">
-                        <Typography variant="h6">Bhavnaben Joshi</Typography>
+                        <Typography variant="h6">Parth Joshi</Typography>
                         <Grid item container justify="space-between" alignItems="flex-end" >
                             <MailIcon fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>bhavna@gmail.com</Typography>
+                            <Typography variant="body1" className={clsx(classes.margin)}>parth@gmail.com</Typography>
                             <CallIcon  fontSize="small"/>
                             <Typography variant="body1" className={clsx(classes.margin)}>7600965621</Typography>
                             <LocationOnIcon  fontSize="small" />
