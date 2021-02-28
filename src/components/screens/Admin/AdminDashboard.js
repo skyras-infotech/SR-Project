@@ -21,6 +21,7 @@ import {NavLink, withRouter,Switch,Route} from 'react-router-dom';
 import AdminTeacherTab from '../Admin/Teacher/AdminTeacherTab';
 import AdminStudentTab from '../Admin/Student/AdminStudentTab';
 import AdminParentTab from '../Admin/Parent/AdminParentTab';
+import AdminExamTab from '../Admin/Exam/AdminExamTab';
 
 
 const useStyles = makeStyles(adminDashbardStyle);
@@ -159,6 +160,9 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/student/view-student-details">
                 <AdminStudentTab val={true}/>
+            </Route>
+            <Route exact path="/exam/view-exam-details">
+                <AdminExamTab val={true}/>
             </Route>
             <Route exact path="/parent/view-parent-details">
                 <AdminParentTab val={true}/>

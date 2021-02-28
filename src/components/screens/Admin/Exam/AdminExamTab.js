@@ -5,18 +5,24 @@ import Tab from '@material-ui/core/Tab';
 import theme from '../../../../theme'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AdminSubject from './AdminSubject';
-import AdminSubjectList from './AdminSubjectList';
+import AdminExam from './AdminExam';
+import AdminExamList from './AdminExamList';
+import AdminExamDetails from './AdminExamDetails';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import ReorderIcon from '@material-ui/icons/Reorder';
+import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 
-export default function AdminSubjectTab() {
+export default function AdminExamTab(prop) {
 
   //const history = useHistory();
-  const [value, setValue] = React.useState(0);
+
+  const [isViewDetails, SetIsViewDetails] = React.useState(prop.val);
+
+  const [value, setValue] = React.useState(isViewDetails ? 2 : 0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+    SetIsViewDetails(false);
   };
 
   function TabPanel(props) {
@@ -43,21 +49,27 @@ export default function AdminSubjectTab() {
     <Paper elevation={2}>
 
       <Tabs
-        value={value}
+        value={isViewDetails ? 2 : value}
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        <Tab icon={<ReorderIcon/>} label="Subject List" />
-        <Tab icon={<AddCircleRoundedIcon/>} label="Add Subject"/>
+        <Tab icon={<ReorderIcon/>} label="Exam List" />
+        <Tab icon={<AddCircleRoundedIcon/>} label="Add Exam"/>
+        { isViewDetails ? 
+        <Tab icon={<VisibilityRoundedIcon/>} label="View Exam" /> : "" }
       </Tabs>
 
       
         <TabPanel value={value} index={0} dir={theme.direction}>
-            <AdminSubjectList/>
+            <AdminExamList/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-            <AdminSubject/>
+            <AdminExam/>
         </TabPanel>
+        { isViewDetails ? 
+        <TabPanel value={value} index={2} dir={theme.direction}>
+            <AdminExamDetails/>
+        </TabPanel> : "" }
     </Paper>
   );
 }

@@ -28,7 +28,7 @@ const usesStyles = makeStyles((theme) => ({
      
 }));
 
-function AdminSubject () {
+function AdminExam () {
 
     const classes = usesStyles();
 
@@ -51,30 +51,18 @@ function AdminSubject () {
              <Grid item container spacing={3}>
 
              <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Subject Code</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Exam Name</Typography>
                         <TextField
                             required
-                            id="subjectCode"
-                            name="subjectCode"
-                            fullWidth
-                            variant="outlined"
-                        />
-                </Grid>
-
-
-                <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Subject Name</Typography>
-                        <TextField
-                            required
-                            id="subjectName"
-                            name="subjectName"
+                            id="examName"
+                            name="examName"
                             fullWidth
                             variant="outlined"
                         />
                 </Grid>
 
              <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select class</Typography>
+                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Class Name</Typography>
                 <FormControl variant="outlined" fullWidth>
                     <Select
                         native
@@ -95,7 +83,7 @@ function AdminSubject () {
             </Grid> 
 
             <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select class section</Typography>
+                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Section Name</Typography>
                 <FormControl variant="outlined" fullWidth>
                     <Select
                         native
@@ -114,50 +102,87 @@ function AdminSubject () {
                 </FormControl>
             </Grid> 
 
-
             <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select Teacher</Typography>
+                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Exam Term</Typography>
                 <FormControl variant="outlined" fullWidth>
                     <Select
                         native
                         value={state.age}
                         onChange={handleClass}
-                      
                         inputProps={{
                             name: 'age',
                             id: 'outlined-age-native-simple',
                         }}
                     >
                     <option aria-label="None" value="" />
-                    <option value={10}>Bhavnaben Joshi</option>
-                    <option value={20}>Bhavnaben Joshi</option>
-                    <option value={30}>Bhavnaben Joshi</option>
+                    <option value={10}>Mid Term</option>
+                    <option value={20}>Mid Term</option>
+                    <option value={30}>Mid Term</option>
                     </Select>
                 </FormControl>
             </Grid> 
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Edition</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Passing Marks</Typography>
                     <TextField
-                            id="edition"
-                            name="edition"
+                            id="passingMarks"
+                            name="passingMarks"
                             fullWidth
                             variant="outlined"
                         />
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Author Name</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Total Marks</Typography>
                     <TextField
-                            id="authorName"
-                            name="authorName"
+                            id="totalMarks"
+                            name="totalMarks"
                             fullWidth
                             variant="outlined"
                         />
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Syllabus</Typography>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Exam Start Date</Typography>
+                        <TextField
+                            id="dob"
+                            type="date"
+                            variant="outlined"
+                            defaultValue="2021-02-13"
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                </Grid>
+
+
+                <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Exam End Date</Typography>
+                        <TextField
+                            id="dob"
+                            type="date"
+                            variant="outlined"
+                            defaultValue="2021-02-13"
+                            fullWidth
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                </Grid>
+
+                <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Extra Comment</Typography>
+                    <TextField
+                            id="comment"
+                            name="comment"
+                            fullWidth
+                            variant="outlined"
+                        />
+                </Grid>
+
+                <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
+                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Exam Syllabus</Typography>
                     <p className={clsx(classes.margin)}>Upload in PDF format only*</p>
                     <Grid item xs={12} container justify="space-between" alignItems="flex-start" spacing={5}>
                             <Grid item>
@@ -176,7 +201,7 @@ function AdminSubject () {
 
                 <Grid item xs={12} sm={12} md={12} lg={12} align="left">
                         <Button variant="contained" color="primary" className={clsx(classes.roundedButton,classes.whiteColor)}>
-                            <Typography variant="h6">Add Subject</Typography>
+                            <Typography variant="h6">Add Exam</Typography>
                         </Button>
                 </Grid>
 
@@ -185,4 +210,4 @@ function AdminSubject () {
     );
 } 
 
-export default AdminSubject;
+export default AdminExam;

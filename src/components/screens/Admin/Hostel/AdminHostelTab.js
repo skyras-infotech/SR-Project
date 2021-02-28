@@ -5,12 +5,16 @@ import Tab from '@material-ui/core/Tab';
 import theme from '../../../../theme'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AdminSubject from './AdminSubject';
-import AdminSubjectList from './AdminSubjectList';
+import AdminHostel from './AdminHostel';
+import AdminHostelList from './AdminHostelList';
+import AdminRoom from './AdminRoom';
+import AdminRoomList from './AdminRoomList';
+import AdminBed from './AdminBed';
+import AdminBedList from './AdminBedList';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import ReorderIcon from '@material-ui/icons/Reorder';
 
-export default function AdminSubjectTab() {
+export default function AdminHostelTab() {
 
   //const history = useHistory();
   const [value, setValue] = React.useState(0);
@@ -47,16 +51,31 @@ export default function AdminSubjectTab() {
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        <Tab icon={<ReorderIcon/>} label="Subject List" />
-        <Tab icon={<AddCircleRoundedIcon/>} label="Add Subject"/>
+        <Tab icon={<ReorderIcon/>} label="Hostel List" />
+        <Tab icon={<AddCircleRoundedIcon/>} label="Add Hostel"/>
+        <Tab icon={<ReorderIcon/>} label="Room List" />
+        <Tab icon={<AddCircleRoundedIcon/>} label="Add Room"/>
+        <Tab icon={<ReorderIcon/>} label="Bed List" />
+        <Tab icon={<AddCircleRoundedIcon/>} label="Add Bed"/>
       </Tabs>
 
-      
         <TabPanel value={value} index={0} dir={theme.direction}>
-            <AdminSubjectList/>
+            <AdminHostelList/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-            <AdminSubject/>
+            <AdminHostel/>
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+            <AdminRoomList/>
+        </TabPanel>
+        <TabPanel value={value} index={3} dir={theme.direction}>
+            <AdminRoom/>
+        </TabPanel>
+        <TabPanel value={value} index={4} dir={theme.direction}>
+            <AdminBedList/>
+        </TabPanel>
+        <TabPanel value={value} index={5} dir={theme.direction}>
+            <AdminBed/>
         </TabPanel>
     </Paper>
   );

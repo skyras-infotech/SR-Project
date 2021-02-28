@@ -5,12 +5,12 @@ import Tab from '@material-ui/core/Tab';
 import theme from '../../../../theme'
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import AdminSubject from './AdminSubject';
-import AdminSubjectList from './AdminSubjectList';
+import AdminTransport from './AdminTransport';
+import AdminTransportList from './AdminTransportList';
 import AddCircleRoundedIcon from '@material-ui/icons/AddCircleRounded';
 import ReorderIcon from '@material-ui/icons/Reorder';
 
-export default function AdminSubjectTab() {
+export default function AdminTransportTab() {
 
   //const history = useHistory();
   const [value, setValue] = React.useState(0);
@@ -47,16 +47,16 @@ export default function AdminSubjectTab() {
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        <Tab icon={<ReorderIcon/>} label="Subject List" />
-        <Tab icon={<AddCircleRoundedIcon/>} label="Add Subject"/>
+        <Tab icon={<ReorderIcon/>} label="Transport List" />
+        <Tab icon={<AddCircleRoundedIcon/>} label="Add Transport"/>
       </Tabs>
 
       
         <TabPanel value={value} index={0} dir={theme.direction}>
-            <AdminSubjectList/>
+            <AdminTransportList/>
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-            <AdminSubject/>
+            <AdminTransport/>
         </TabPanel>
     </Paper>
   );

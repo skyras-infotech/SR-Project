@@ -54,32 +54,27 @@ const columns = [
   ];
   
   const rows = [
-    { id: 1, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Snow Jon', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",   email: 'snow@gmail.com',mobile:9874563215},
-    { id: 2, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister Cersei', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Lannister@gmail.com' ,mobile:9874563215},
-    { id: 3, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister Jaime', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Jaime@gmail.com' ,mobile:9874563215},
-    { id: 4, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Stark patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Daenerys@gmail.com' ,mobile:9874563215},
-    { id: 5, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Targaryen patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'snow@gmail.com' ,mobile:9874563215},
-    { id: 6, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Melisandre patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Melisandre@gmail.com' ,mobile:9874563215},
-    { id: 7, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Clifford patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Ferrara@gmail.com' ,mobile:9874563215},
-    { id: 8, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Frances patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Rossini@gmail.com' ,mobile:9874563215},
-    { id: 9, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Roxie patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Harvey@gmail.com' ,mobile:9874563215},
-    { id: 10,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Snow patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'snow@gmail.com',mobile:9874563215},
-    { id: 11,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Lannister@gmail.com' ,mobile:9874563215},
-    { id: 12,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Jaime@gmail.com' ,mobile:9874563215},
-    { id: 13,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Stark patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Daenerys@gmail.com' ,mobile:9874563215},
-    { id: 14,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Targaryen patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'snow@gmail.com' ,mobile:9874563215},
-    { id: 15,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Melisandre patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Melisandre@gmail.com' ,mobile:9874563215},
-    { id: 16,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Clifford patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Ferrara@gmail.com' ,mobile:9874563215},
-    { id: 17,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Frances patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Rossini@gmail.com' ,mobile:9874563215},
-    { id: 18,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Roxie patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th",  email: 'Harvey@gmail.com' ,mobile:9874563215},
+    { id: 1, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Snow Jon', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 2, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister Cersei', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 3, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister Jaime', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 4, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Stark patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 5, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Targaryen patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 6, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Melisandre patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 7, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Clifford patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 8, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Frances patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 9, subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Roxie patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 10,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Snow patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 11,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 12,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Lannister patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 13,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Stark patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 14,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Targaryen patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 15,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Melisandre patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 16,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Clifford patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 17,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Frances patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
+    { id: 18,subjectCode:"SS101",subjectName:"Science", className:"6",teacherName: 'Roxie patel', sectionName:"Class A",authorName:"SK Gupta",edition:"5th"},
   ];
 
-export default function AdminStudentList() {
-
-  const [state, setState] = React.useState({
-    name: 'hai',
-  });
-
+export default function AdminSubjectList() {
 
   const classes = useStyles();
     return (
