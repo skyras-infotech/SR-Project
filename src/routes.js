@@ -9,6 +9,11 @@ import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkT
 import AdminTransportTab from './components/screens/Admin/Transport/AdminTransportTab';
 import AdminNoticeboardTab from './components/screens/Admin/Noticeboard/AdminNotiesboardTab';
 import AdminHolidayTab from './components/screens/Admin/Holiday/AdminHolidayTab';
+import AdminAttendanceTab from './components/screens/Admin/Attendance/AdminAttendanceTab';
+import AdminManageMarkTab from './components/screens/Admin/ManageMarks/AdminManageMarkTab';
+import AdminFeePaymentTab from './components/screens/Admin/FeePayment/AdminFeePaymentTab';
+import AdminPaymentTab from './components/screens/Admin/Payment/AdminPaymentTab';
+import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
 
 const dashboardRoutes = [
     {
@@ -42,9 +47,33 @@ const dashboardRoutes = [
         layout:"/admin"
     },
     {
+        path:"/attendance",
+        name:"Attendance",
+        components: AdminAttendanceTab,
+        layout:"/admin"
+    },
+    {
         path:"/exams",
         name:"Exam",
         components: AdminExamTab,
+        layout:"/admin"
+    },
+    {
+        path:"/manage-mark",
+        name:"Manage Mark",
+        components: AdminManageMarkTab,
+        layout:"/admin"
+    },
+    {
+        path:"/payment",
+        name:"Payment",
+        components: AdminPaymentTab,
+        layout:"/admin"
+    },
+    {
+        path:"/fee-payment",
+        name:"Fee Payment",
+        components: AdminFeePaymentTab,
         layout:"/admin"
     },
     {
@@ -77,6 +106,13 @@ const dashboardRoutes = [
         components: AdminHolidayTab,
         layout:"/admin"
     },
+    {
+        path:"/library",
+        name:"Library",
+        components: AdminLibraryTab,
+        layout:"/admin"
+    },
+   
 ];
 
 export default dashboardRoutes;
