@@ -1,5 +1,5 @@
 import { grey,blue, orange } from '@material-ui/core/colors';
-const drawerWidth = 260;
+const drawerWidth = 265;
 
 const adminDashbardStyle = theme => ({
   
