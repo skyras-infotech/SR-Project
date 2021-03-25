@@ -56,7 +56,7 @@ function createData(name, colon, value, name1, colon1, value1) {
 
   ];
 
-export default function AdminStudentDetails() {
+export default function AdminStudentDetails(prop) {
 
     const classes = usesStyles();
 
@@ -67,12 +67,12 @@ export default function AdminStudentDetails() {
                             <img src={placeholder} alt="Img" className={classes.imgOptionsSize}/> 
                     </Grid>
                     <Grid item direction="column" align="left">
-                        <Typography variant="h6">Parth Joshi</Typography>
+                        <Typography variant="h6">{prop.details.fullName}</Typography>
                         <Grid item container justify="space-between" alignItems="flex-end" >
                             <MailIcon fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>parth@gmail.com</Typography>
+                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.email}</Typography>
                             <CallIcon  fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>7600965621</Typography>
+                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.mobile}</Typography>
                             <LocationOnIcon  fontSize="small" />
                             <Typography variant="body1" className={clsx(classes.margin)}>Navsari</Typography>
                         </Grid>

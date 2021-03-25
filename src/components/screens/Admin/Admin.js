@@ -15,6 +15,7 @@ import img10 from '../../../Images/10.png'
 import { ArrowForward,DoubleArrow } from '@material-ui/icons';
 import clsx from 'clsx';
 import adminDashbardStyle from '../../Styles/adminDashboardStyle';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -34,21 +35,22 @@ export default function Admin() {
         </Grid>
 
         <Grid item xs={12} lg={4} md={6}>
-            <Paper elevation={10} className={clsx(classes.commonPaper,classes.studentBGColor,classes.padding)} onClick={() => {
-                alert("Alert clicked");
-            }}>
+        <Link to="/students" style={{ color: "black", textDecoration: "none"}}>
+            <Paper elevation={10} className={clsx(classes.commonPaper,classes.studentBGColor,classes.padding)}>
             <Grid item align="right">
                 <img src={img2} alt="Img" className={classes.imgOptionsSize}/>  
             </Grid>
-            <Grid item align="left"><Typography variant="h4">Student</Typography></Grid>
+            <Grid item align="left"><Typography variant="h4">Students</Typography></Grid>
             <Grid item xs={12} container justify="space-between" alignItems="center">
                 <Grid item><Typography variant="h4">1</Typography></Grid>
                 <Grid item><ArrowForward className={classes.largeIcon}/> </Grid>
             </Grid>
             </Paper>
+        </Link>
         </Grid>
 
         <Grid item  xs={12} lg={4} md={6} >
+        <Link to="/teacher" style={{ color: "black", textDecoration: "none"}}>
             <Paper elevation={10} className={clsx(classes.commonPaper,classes.teacherBGColor,classes.textColor)}>
             <Grid item align="right">
                 <img src={img3} alt="Img" className={classes.imgOptionsSize}/>  
@@ -61,9 +63,11 @@ export default function Admin() {
             </Grid>
         
             </Paper>
+            </Link>
         </Grid>
 
         <Grid item  xs={12} lg={4} md={6}>
+        <Link to="/attendance" style={{ color: "black", textDecoration: "none"}}>
             <Paper elevation={10} className={clsx(classes.commonPaper,classes.attendanceBGColor,classes.padding)}>
             <Grid item align="right">
                 <img src={img4} alt="Img" className={classes.imgOptionsSize}/>  
@@ -74,10 +78,12 @@ export default function Admin() {
                 <Grid item><Typography variant="h4">1</Typography></Grid>
                 <Grid item><ArrowForward className={classes.largeIcon}/> </Grid>
             </Grid>
-            
             </Paper>   
+            </Link>
         </Grid>
+
         <Grid item  xs={12} lg={4} md={6}>
+        <Link to="/parents" style={{ color: "black", textDecoration: "none"}}>
             <Paper elevation={10} className={clsx(classes.commonPaper,classes.parentsBGColor,classes.padding)}>
             <Grid item align="right">
                 <img src={img5} alt="Img" className={classes.imgOptionsSize}/>  
@@ -88,9 +94,11 @@ export default function Admin() {
                 <Grid item><ArrowForward className={classes.largeIcon}/> </Grid>
             </Grid>
             </Paper>
+            </Link>
         </Grid>
 
         <Grid item xs={12} lg={4} md={6}>
+        <Link to="/message" style={{ color: "black", textDecoration: "none"}}>
         <Paper elevation={10} className={clsx(classes.commonPaper,classes.messageBGColor,classes.textColor)}>
             <Grid item align="right">
                 <img src={img6} alt="Img" className={classes.imgOptionsSize}/>  
@@ -101,9 +109,11 @@ export default function Admin() {
                 <Grid item><ArrowForward className={classes.largeIcon}/> </Grid>
             </Grid>
             </Paper>
+            </Link>
         </Grid>
 
         <Grid item  xs={12} lg={4} md={6}>
+        <Link to="/noticeboard" style={{ color: "black", textDecoration: "none"}}>
         <Paper elevation={10} className={clsx(classes.commonPaper,classes.noticeBGColor,classes.padding)}>
             <Grid item align="right">
                 <img src={img7} alt="Img" className={classes.imgOptionsSize}/>  
@@ -114,6 +124,7 @@ export default function Admin() {
                 <Grid item><ArrowForward className={classes.largeIcon}/> </Grid>
             </Grid>
             </Paper>
+            </Link>
         </Grid>
 
         <Grid item xs={12} className={classes.bottomMargin}>
@@ -123,6 +134,7 @@ export default function Admin() {
                 <Grid item xs={12} container spacing={6} justify="space-evenly" alignItems="center">
 
                 <Grid item xs={12} lg={4} md={6}>
+                <Link to="/exams" style={{ color: "black", textDecoration: "none"}}>
                     <Paper elevation={10} className={clsx(classes.commonPaper2,classes.BGColor,classes.textColors)}>
                         <Grid item xs={12} container justify="space-between" alignItems="center">
                             <Grid item>
@@ -138,9 +150,11 @@ export default function Admin() {
                             </Grid>
                         </Grid>
                     </Paper>
+                    </Link>
                 </Grid>    
 
                 <Grid item xs={12} lg={4} md={6}>
+                <Link to="/noticeboard" style={{ color: "black", textDecoration: "none"}}>
                     <Paper elevation={10} className={clsx(classes.commonPaper2,classes.BGColor,classes.textColors)}>
                         <Grid item xs={12} container justify="space-between" alignItems="center">
                             <Grid item>
@@ -156,9 +170,11 @@ export default function Admin() {
                             </Grid>
                         </Grid>
                     </Paper>
+                    </Link>
                 </Grid>     
 
                 <Grid item xs={12} lg={4} md={6}>
+                <Link to="/holiday" style={{ color: "black", textDecoration: "none"}}>
                     <Paper elevation={10} className={clsx(classes.commonPaper2,classes.BGColor,classes.textColors)}>
                         <Grid item xs={12} container justify="space-between" alignItems="center">
                             <Grid item>
@@ -174,6 +190,7 @@ export default function Admin() {
                             </Grid>
                         </Grid>
                     </Paper>
+                    </Link>
                 </Grid>                   
 
                 </Grid>

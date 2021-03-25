@@ -1,5 +1,5 @@
 import Admin from '../src/components/screens/Admin/Admin'
-import AdminTeacherTab from '../src/components/screens/Admin/Teacher/AdminTeacherTab'
+import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDash'
 import AdminStudentTab from '../src/components/screens/Admin/Student/AdminStudentTab';
 import AdminParentTab from '../src/components/screens/Admin/Parent/AdminParentTab';
 import AdminSubjectTab from '../src/components/screens/Admin/Subject/AdminSubjectTab';
@@ -14,6 +14,7 @@ import AdminManageMarkTab from './components/screens/Admin/ManageMarks/AdminMana
 import AdminFeePaymentTab from './components/screens/Admin/FeePayment/AdminFeePaymentTab';
 import AdminPaymentTab from './components/screens/Admin/Payment/AdminPaymentTab';
 import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
+import AccountInfo from './components/screens/Admin/AccountInfo';
 
 const dashboardRoutes = [
     {
@@ -25,7 +26,7 @@ const dashboardRoutes = [
     {
         path:"/teacher",
         name:"Teacher",
-        components: AdminTeacherTab,
+        components: AdminTeacherDash,
         layout:"/admin"
     },
     {
@@ -112,7 +113,12 @@ const dashboardRoutes = [
         components: AdminLibraryTab,
         layout:"/admin"
     },
-   
+    {
+        path:"/account",
+        name:"Account",
+        components: AccountInfo,
+        layout:"/admin"
+    },
 ];
 
 export default dashboardRoutes;

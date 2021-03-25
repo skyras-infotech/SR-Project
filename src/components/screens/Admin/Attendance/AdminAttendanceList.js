@@ -1,8 +1,7 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button,Grid, Select, makeStyles, Typography, FormControl,TextField,FormGroup,FormControlLabel,Checkbox  } from '@material-ui/core';
+import { Button,Grid, Select,makeStyles, Typography, FormControl,TextField,FormGroup,FormControlLabel,Checkbox  } from '@material-ui/core';
 import clsx from 'clsx';
-// import AdminAttendanceComponents from './AdminAttendanceComponents';
 
 const useStyles = makeStyles((theme)=>({
   root: {
@@ -15,6 +14,9 @@ const useStyles = makeStyles((theme)=>({
   },
   marginBottom: {
     
+  },
+  textColor:{
+    color:"#51BEFF"
   },
   marginLeft:{
     marginTop:theme.spacing(1),
@@ -31,49 +33,14 @@ roundedButton: {
 }));
 
 
-
-const columns = [
-    { field: 'id', headerName: 'ID', width: 70, hide:true, headerClassName: 'headerStyle'},
-    { field: 'rollNo', headerName: 'Roll No', width: 100, headerClassName: 'headerStyle'},
-    { field: 'fullName', headerName: 'Student', width: 200, headerClassName: 'headerStyle'},
-    { field: 'attendance', headerName: 'Attendance', width: 300, headerClassName: 'headerStyle',
-        renderCell: () => (
-           <Grid container>
-            {/* <AdminAttendanceComponents/> */}
-           </Grid>
-        ), },
-    { field: 'comment', headerName: 'Comments', width: 200, headerClassName: 'headerStyle' },
-  ];
-  
-  const rows = [
-    { id: 1, rollNo:101, fullName: 'Snow Jon',  comment:"NA"},
-    { id: 2, rollNo:101, fullName: 'Lannister Cersei', comment:"NA"},
-    { id: 3, rollNo:101, fullName: 'Lannister Jaime', comment:"NA"},
-    { id: 4, rollNo:101, fullName: 'Stark patel', comment:"NA"},
-    { id: 5, rollNo:101, fullName: 'Targaryen patel', comment:"NA"},
-    { id: 6, rollNo:101, fullName: 'Melisandre patel', comment:"NA"},
-    { id: 7, rollNo:101, fullName: 'Clifford patel', comment:"NA"},
-    { id: 8, rollNo:101, fullName: 'Frances patel', comment:"NA"},
-    { id: 9, rollNo:101, fullName: 'Roxie patel', comment:"NA"},
-    { id: 10,rollNo:101,  fullName: 'Snow patel', comment:"NA"},
-    { id: 11,rollNo:101,  fullName: 'Lannister patel', comment:"NA"},
-    { id: 12,rollNo:101,  fullName: 'Lannister patel', comment:"NA"},
-    { id: 13,rollNo:101,  fullName: 'Stark patel', comment:"NA"},
-    { id: 14,rollNo:101,  fullName: 'Targaryen patel', comment:"NA"},
-    { id: 15,rollNo:101,  fullName: 'Melisandre patel', comment:"NA"},
-    { id: 16,rollNo:101,  fullName: 'Clifford patel', comment:"NA"},
-    { id: 17,rollNo:101,  fullName: 'Frances patel', comment:"NA"},
-    { id: 18,rollNo:101,  fullName: 'Roxie patel', comment:"NA"},
-  ];
-
 export default function AdminAttendanceList() {
   
-    const [state, setState] = React.useState({
-      age: '',
-      name: 'hai',
-      hw:false,
-      
-    });
+  const [state, setState] = React.useState({
+    age: '',
+    name: 'hai',
+    hw:false,
+    
+  });
 
   const handleClass = (event) => {
     const name = event.target.name;
@@ -88,6 +55,44 @@ export default function AdminAttendanceList() {
   };
 
   const { hw } = state;
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 70, hide:true, headerClassName: 'headerStyle'},
+    { field: 'rollNo', headerName: 'Roll No', width: 100, headerClassName: 'headerStyle'},
+    { field: 'fullName', headerName: 'Student', width: 200, headerClassName: 'headerStyle'},
+    { field: 'attendance', headerName: 'Attendance', width: 300, headerClassName: 'headerStyle',
+        renderCell: () => (
+           <Grid container>
+                  <FormControl>
+                      <FormControlLabel
+                              control={<Checkbox color="primary" name="Hello" />}
+                        />
+                  </FormControl>
+           </Grid>
+        ), },
+    { field: 'comment', headerName: 'Comments', width: 200, headerClassName: 'headerStyle' },
+  ];
+  
+  const rows = [
+    { id: 1,  rollNo:101, attendance:"present", fullName: 'Snow Jon',  comment:"NA" },
+    { id: 2,  rollNo:101, attendance:"present", fullName: 'Lannister Cersei', comment:"NA" },
+    { id: 3,  rollNo:101, attendance:"present", fullName: 'Lannister Jaime', comment:"NA" },
+    { id: 4,  rollNo:101, attendance:"present", fullName: 'Stark patel', comment:"NA" },
+    { id: 5,  rollNo:101, attendance:"present", fullName: 'Targaryen patel', comment:"NA" },
+    { id: 6,  rollNo:101, attendance:"present", fullName: 'Melisandre patel', comment:"NA" },
+    { id: 7,  rollNo:101, attendance:"present", fullName: 'Clifford patel', comment:"NA" },
+    { id: 8,  rollNo:101, attendance:"present", fullName: 'Frances patel', comment:"NA" },
+    { id: 9,  rollNo:101, attendance:"present", fullName: 'Roxie patel', comment:"NA" },
+    { id: 10, rollNo:101, attendance:"present", fullName: 'Snow patel', comment:"NA" },
+    { id: 11, rollNo:101, attendance:"present", fullName: 'Lannister patel', comment:"NA" },
+    { id: 12, rollNo:101, attendance:"present", fullName: 'Lannister patel', comment:"NA" },
+    { id: 13, rollNo:101, attendance:"present", fullName: 'Stark patel', comment:"NA" },
+    { id: 14, rollNo:101, attendance:"present", fullName: 'Targaryen patel', comment:"NA" },
+    { id: 15, rollNo:101, attendance:"present", fullName: 'Melisandre patel', comment:"NA" },
+    { id: 16, rollNo:101, attendance:"present", fullName: 'Clifford patel', comment:"NA" },
+    { id: 17, rollNo:101, attendance:"present", fullName: 'Frances patel', comment:"NA" },
+    { id: 18, rollNo:101, attendance:"present", fullName: 'Roxie patel', comment:"NA" },
+  ];
 
   const classes = useStyles();
     return (
@@ -165,7 +170,8 @@ export default function AdminAttendanceList() {
                   </Grid>
           </Grid>
           <div style={{ height: 700, width: '100%' }} className={clsx(classes.root,classes.marginLeft)}>
-              <DataGrid pagination rows={rows} columns={columns} pageSize={10} showCellRightBorder />
+              <DataGrid pagination rows={rows} columns={columns} pageSize={10} showCellRightBorder
+                onRowSelected={(item) => console.log(item)} />
           </div>
 
           <Grid item direction="column" align="left" xs={12} sm={12} md={12} lg={12}>

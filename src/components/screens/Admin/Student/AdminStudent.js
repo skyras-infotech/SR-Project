@@ -1,14 +1,21 @@
-import { RadioGroup,FormControlLabel,Radio, Grid, Select, makeStyles, InputAdornment, TextField, 
-    Typography, FormControl, IconButton, OutlinedInput, Button } from '@material-ui/core';
 import React from 'react';
 import clsx from 'clsx';
+import { RadioGroup,FormControlLabel,Radio, Grid, Select, makeStyles, InputAdornment, TextField, 
+    Typography, FormControl,MenuItem, IconButton, OutlinedInput, FormHelperText,Button,Backdrop,CircularProgress } from '@material-ui/core';
 import { Visibility,VisibilityOff } from '@material-ui/icons';
 import placeholder from '../../../../Images/placeholder.jpg';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import  DateFnsUtils from '@date-io/date-fns';
+import {useForm,Controller} from 'react-hook-form';
 
 
 const usesStyles = makeStyles((theme) => ({
       margin: {
         margin: theme.spacing(0.5),
+      },
+      topleftmargin:{
+        marginLeft: theme.spacing(0.2),
+        marginTop: theme.spacing(0.5),
       },
       root:{
         backgroundColor:"#F89",
@@ -27,21 +34,26 @@ const usesStyles = makeStyles((theme) => ({
         width: theme.spacing(14),
         height: theme.spacing(14),
       },
-     
+      backdrop: {
+        zIndex: theme.zIndex.drawer + 1,
+        color: '#fff',
+      },
 }));
 
 function AdminStudent () {
 
+    const {register,handleSubmit,control,errors} = useForm();
+    const onSubmit = (data) => console.log(data);
+
     const classes = usesStyles();
 
-    const [value, setValue] = React.useState('female');
+    const [file, setFile] = React.useState(null);
 
-    const handleGender = (event) => {
-        setValue(event.target.value);
-    };
+    const fileHandler = (e) => {
+        setFile(e.target.files[0])
+    }
 
     const [values, setValues] = React.useState({
-        weight: '',
         password:'',
       });
 
@@ -57,62 +69,62 @@ function AdminStudent () {
         event.preventDefault();
       };
 
-      const [state, setState] = React.useState({
-        age: '',
-        name: 'hai',
-        
-      });
-    
-      const handleClass = (event) => {
-        const name = event.target.name;
-        setState({
-          ...state,
-          [name]: event.target.value,
-        });
+      const [open, setOpen] = React.useState(false);
+      const handleClose = () => {
+        setOpen(false);
+      };
+      const handleToggle = () => {
+        setOpen(!open);
       };
 
     return (
         <Grid container spacing={3} >
+            <form onSubmit={handleSubmit(onSubmit)}>
              <Grid item container spacing={3}>
 
-             <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
+            <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                 <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select class</Typography>
-                <FormControl variant="outlined" fullWidth>
-                    <Select
-                        native
-                        value={state.age}
-                        onChange={handleClass}
-                      
-                        inputProps={{
-                            name: 'age',
-                            id: 'outlined-age-native-simple',
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
+                    <Controller
+                        render = {(props) => (
+                            <Select value={props.value} onChange={props.onChange}>
+                                <MenuItem value="">Select class</MenuItem>
+                                <MenuItem value="Class 1">Class 1</MenuItem>
+                                <MenuItem value="Class 2">Class 2</MenuItem>
+                                <MenuItem value="Class 3">Class 3</MenuItem>
+                            </Select>
+                        )}
+                        name="class"
+                        control={control}
+                        defaultValue=""
+                        rules = {{
+                            required:"Please select class"
                         }}
-                    >
-                    <option aria-label="None" value="" />
-                    <option value={10}>Class 8</option>
-                    <option value={20}>Class 9</option>
-                    <option value={30}>Class 10</option>
-                    </Select>
+                    />
+                <FormHelperText>{errors.class?.message}</FormHelperText>
                 </FormControl>
-            </Grid> 
+            </Grid>
 
             <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select class section</Typography>
-                <FormControl variant="outlined" fullWidth>
-                    <Select
-                        native
-                        value={state.age}
-                        onChange={handleClass}
-                        inputProps={{
-                            name: 'age',
-                            id: 'outlined-age-native-simple',
+                <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select section</Typography>
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
+                    <Controller
+                        render = {(props) => (
+                            <Select value={props.value} onChange={props.onChange}>
+                                <MenuItem value="">Select section</MenuItem>
+                                <MenuItem value="Section A">Section A</MenuItem>
+                                <MenuItem value="Section B">Section B</MenuItem>
+                                <MenuItem value="Section C">Section C</MenuItem>
+                            </Select>
+                        )}
+                        name="section"
+                        control={control}
+                        defaultValue=""
+                        rules = {{
+                            required:"Please select section"
                         }}
-                    >
-                    <option aria-label="None" value="" />
-                    <option value={10}>Class 8</option>
-                    <option value={20}>Class 9</option>
-                    <option value={30}>Class 10</option>
-                    </Select>
+                    />
+                <FormHelperText>{errors.section?.message}</FormHelperText>
                 </FormControl>
             </Grid> 
 
@@ -120,23 +132,31 @@ function AdminStudent () {
             <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Roll Number</Typography>
                         <TextField
-                            required
                             id="rollNo"
                             name="rollNumber"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter roll number"
+                            })}
+                            error={Boolean(errors.rollNumber)}
+                            helperText={errors.rollNumber?.message}
                         />
                 </Grid>
-
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>First Name</Typography>
                         <TextField
-                            required
+                            
                             id="firstName"
                             name="firstName"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter first name"
+                            })}
+                            error={Boolean(errors.firstName)}
+                            helperText={errors.firstName?.message}
                         />
                 </Grid>
 
@@ -147,6 +167,11 @@ function AdminStudent () {
                             name="middleName"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter middle name"
+                            })}
+                            error={Boolean(errors.middleName)}
+                            helperText={errors.middleName?.message}
                         />
                 </Grid>
 
@@ -157,31 +182,50 @@ function AdminStudent () {
                             name="lastName"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter last name"
+                            })}
+                            error={Boolean(errors.lastName)}
+                            helperText={errors.lastName?.message}
                         />
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                 <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Gender</Typography>
-                    <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleGender} className={classes.textColor}>
-                        <Grid item>
-                            <FormControlLabel value="male" control={<Radio color="black"/>} label="Male" />
-                            <FormControlLabel value="female" control={<Radio color="black" />} label="Female" />
-                        </Grid>
-                    </RadioGroup>
+                    <FormControl error={Boolean(errors.gender)}>
+                        <RadioGroup row name="gender" className={classes.textColor}>
+                                <FormControlLabel value="male" control={<Radio color="black" inputRef={register({ required:"Please select gender"})}/>} label="Male" />
+                                <FormControlLabel value="female" control={<Radio color="black" inputRef={register({ required:"Please select gender"})} />} label="Female" />
+                        </RadioGroup>
+                    <FormHelperText>{errors.gender?.message}</FormHelperText>
+                    </FormControl>
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of birth</Typography>
-                        <TextField
-                            id="dob"
-                            type="date"
-                            variant="outlined"
-                            defaultValue="2021-02-13"
-                            fullWidth
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <Controller
+                                render = {(props) => (
+                                    <KeyboardDatePicker
+                                        disableToolbar
+                                        variant="inline"
+                                        inputVariant="outlined"
+                                        format="dd/MM/yyyy"
+                                        value={props.value}
+                                        onChange={props.onChange}
+                                        fullWidth
+                                        error={Boolean(errors.dob)}
+                                        helperText={errors.dob?.message}
+                                    />
+                                )}
+                                name="dob"
+                                defaultValue={null}
+                                control={control}
+                                rules={{
+                                    required:"Please select date of birth"
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
                 </Grid>
 
 
@@ -192,6 +236,11 @@ function AdminStudent () {
                             name="address"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter address"
+                            })}
+                            error={Boolean(errors.address)}
+                            helperText={errors.address?.message}
                         />
                 </Grid>
 
@@ -203,6 +252,11 @@ function AdminStudent () {
                             name="city"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter city"
+                            })}
+                            error={Boolean(errors.city)}
+                            helperText={errors.city?.message}
                         />
                 </Grid>
 
@@ -214,6 +268,11 @@ function AdminStudent () {
                             name="state"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter state"
+                            })}
+                            error={Boolean(errors.state)}
+                            helperText={errors.state?.message}
                         />
                 </Grid>
 
@@ -224,30 +283,14 @@ function AdminStudent () {
                             name="zipcode"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter zipcode"
+                            })}
+                            error={Boolean(errors.zipcode)}
+                            helperText={errors.zipcode?.message}
                         />
                 </Grid>  
                 
-                <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                    <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Class</Typography>
-                        <FormControl variant="outlined" fullWidth>
-                            <Select
-                                native
-                                value={state.age}
-                                onChange={handleClass}
-                              
-                                inputProps={{
-                                    name: 'age',
-                                    id: 'outlined-age-native-simple',
-                                }}
-                            >
-                            <option aria-label="None" value="" />
-                            <option value={10}>Class 8</option>
-                            <option value={20}>Class 9</option>
-                            <option value={30}>Class 10</option>
-                            </Select>
-                        </FormControl>
-                </Grid>
-
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Mobile number</Typography>
                     <TextField
@@ -255,6 +298,16 @@ function AdminStudent () {
                             name="mob"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter mobile number",
+                                pattern: {
+                                    value : /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/,
+                                    message:"Please enter valid mobile number"
+                                }
+                                
+                            })}
+                            error={Boolean(errors.mob)}
+                            helperText={errors.mob?.message}
                             InputProps={{
                                 startAdornment: <InputAdornment position="start">+91</InputAdornment>,
                             }}
@@ -268,6 +321,7 @@ function AdminStudent () {
                             name="amob"
                             fullWidth
                             variant="outlined"
+                            inputRef={register}
                             InputProps={{
                                 startAdornment: <InputAdornment position="start">+91</InputAdornment>,
                             }}
@@ -281,6 +335,7 @@ function AdminStudent () {
                             name="phone"
                             fullWidth
                             variant="outlined"
+                            inputRef={register}
                         />
                 </Grid>
 
@@ -291,6 +346,15 @@ function AdminStudent () {
                             name="email"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter email id",
+                                pattern: {
+                                    value : /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                                    message:"Please enter valid email id"
+                                }
+                            })}
+                            error={Boolean(errors.email)}
+                            helperText={errors.email?.message}
                         />
                 </Grid>
 
@@ -301,14 +365,24 @@ function AdminStudent () {
                             name="username"
                             fullWidth
                             variant="outlined"
+                            inputRef={register({
+                                required:"Please enter username"
+                            })}
+                            error={Boolean(errors.username)}
+                            helperText={errors.username?.message}
                         />
                 </Grid>
 
                 <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Password</Typography>
-                        <FormControl fullWidth>
+                        <FormControl fullWidth error={Boolean(errors.password)}>
                             <OutlinedInput
                                 id="password"
+                                name = "password"
+                                inputRef={register({
+                                    required:"Please enter password"
+                                })}
+                                
                                 type={values.showPassword ? 'text' : 'password'}
                                 value={values.password}
                                 onChange={handlePassword('password')}
@@ -324,6 +398,7 @@ function AdminStudent () {
                                 </InputAdornment>
                                 }
                             />
+                            <FormHelperText>{errors.password?.message}</FormHelperText>
                         </FormControl>
                 </Grid>
 
@@ -336,24 +411,31 @@ function AdminStudent () {
                                     style={{ display: 'none' }}
                                     id="raised-button-file"
                                     type="file"
+                                    name="image"
+                                    ref={register}
+                                    onChange={fileHandler}
                                 />
                                 <label htmlFor="raised-button-file">
                                     <Button variant="contained" component="span" color="primary" className={classes.margin}>Choose Image</Button>
                                 </label>
                             </Grid>
                             <Grid item>
-                                <img src={placeholder} alt="Img" className={classes.imgOptionsSize}/> 
+                                <img src={file ? URL.createObjectURL(file) : placeholder} alt="Img" className={classes.imgOptionsSize}/> 
                             </Grid>
                     </Grid>
                 </Grid>
 
                 <Grid item xs={12} sm={12} md={12} lg={12} align="left">
-                        <Button variant="contained" color="primary" className={clsx(classes.roundedButton,classes.whiteColor)}>
+                        <Button variant="contained" color="primary" type="submit" onClick={handleToggle} className={clsx(classes.roundedButton,classes.whiteColor)}>
                             <Typography variant="h6">Add Student</Typography>
                         </Button>
                 </Grid>
 
+                <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
+                    <CircularProgress color="inherit" />
+                </Backdrop>
             </Grid>
+            </form>
         </Grid>
     );
 } 
