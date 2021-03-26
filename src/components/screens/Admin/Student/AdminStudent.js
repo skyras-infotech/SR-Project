@@ -7,7 +7,7 @@ import placeholder from '../../../../Images/placeholder.jpg';
 import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 import  DateFnsUtils from '@date-io/date-fns';
 import {useForm,Controller} from 'react-hook-form';
-
+import { useLocation } from "react-router-dom";
 
 const usesStyles = makeStyles((theme) => ({
       margin: {
@@ -41,6 +41,15 @@ const usesStyles = makeStyles((theme) => ({
 }));
 
 function AdminStudent () {
+
+    let location = useLocation();
+    const [data, setData] = React.useState(location.state);
+
+    const handleData = (e) => {
+        if (data !== undefined) {
+            setData({ ...data, [e.target.name]: e.target.value });
+        }
+    };
 
     const {register,handleSubmit,control,errors} = useForm();
     const onSubmit = (data) => console.log(data);
@@ -78,7 +87,7 @@ function AdminStudent () {
       };
 
     return (
-        <Grid container spacing={3} >
+        <Grid container>
             <form onSubmit={handleSubmit(onSubmit)}>
              <Grid item container spacing={3}>
 
@@ -133,12 +142,14 @@ function AdminStudent () {
                     <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Roll Number</Typography>
                         <TextField
                             id="rollNo"
-                            name="rollNumber"
+                            name="rollNo"
                             fullWidth
                             variant="outlined"
                             inputRef={register({
                                 required:"Please enter roll number"
                             })}
+                            value={data == null ? null : data.rollNo}
+                            onChange={handleData}
                             error={Boolean(errors.rollNumber)}
                             helperText={errors.rollNumber?.message}
                         />
@@ -149,12 +160,14 @@ function AdminStudent () {
                         <TextField
                             
                             id="firstName"
-                            name="firstName"
+                            name="fullName"
                             fullWidth
                             variant="outlined"
                             inputRef={register({
                                 required:"Please enter first name"
                             })}
+                            value={data == null ? null : data.fullName}
+                            onChange={handleData}
                             error={Boolean(errors.firstName)}
                             helperText={errors.firstName?.message}
                         />

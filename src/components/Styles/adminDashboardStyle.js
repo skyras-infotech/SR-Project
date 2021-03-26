@@ -195,7 +195,7 @@ const adminDashbardStyle = theme => ({
       content: {
         flexGrow: 1,
         color:"#000",
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
         marginTop: theme.spacing(3),
       },
 });

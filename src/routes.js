@@ -1,6 +1,6 @@
 import Admin from '../src/components/screens/Admin/Admin'
 import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDash'
-import AdminStudentTab from '../src/components/screens/Admin/Student/AdminStudentTab';
+import AdminStudentDash from '../src/components/screens/Admin/Student/AdminStudentDash';
 import AdminParentTab from '../src/components/screens/Admin/Parent/AdminParentTab';
 import AdminSubjectTab from '../src/components/screens/Admin/Subject/AdminSubjectTab';
 import AdminExamTab from '../src/components/screens/Admin/Exam/AdminExamTab';
@@ -32,7 +32,7 @@ const dashboardRoutes = [
     {
         path:"/students",
         name:"Students",
-        components: AdminStudentTab,
+        components: AdminStudentDash,
         layout:"/admin"
     },
     {

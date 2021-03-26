@@ -45,11 +45,8 @@ function AdminTeacher() {
     let location = useLocation();
     const [data, setData] = useState(location.state);
 
-    //let data1 = Object.assign({},location.state);
-
     const handleData = (e) => {
         if (data !== undefined) {
-            console.log("changed")
             setData({ ...data, [e.target.name]: e.target.value });
         }
     };

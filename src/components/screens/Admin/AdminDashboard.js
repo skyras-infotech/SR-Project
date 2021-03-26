@@ -24,6 +24,7 @@ import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import {Link} from 'react-router-dom';
 import AdminTeacher from './Teacher/AdminTeacher';
+import AdminStudent from './Student/AdminStudent';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -217,6 +218,12 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/teacher/edit-teacher">
                 <AdminTeacher />
+            </Route>
+            <Route exact path="/student/add-student">
+                <AdminStudent />
+            </Route>
+            <Route exact path="/student/edit-student">
+                <AdminStudent />
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>
