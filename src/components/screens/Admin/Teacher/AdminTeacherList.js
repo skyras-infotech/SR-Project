@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button,DialogContentText,DialogActions, Grid, makeStyles } from '@material-ui/core';
+import { Button, DialogContentText, DialogActions, Grid, makeStyles } from '@material-ui/core';
 import AdminTeacherDetails from './AdminTeacherDetails';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 const useStyles = makeStyles({
   root: {
     '& .headerStyle': {
-      color: "green",
+      color: "blueviolet",
     },
   },
 });
@@ -135,8 +135,8 @@ export default function AdminTeacherList() {
   const classes = useStyles();
   return (
 
-    <div style={{ height: 650 }} className={classes.root}>
-      <DataGrid pagination rows={rows} columns={columns} pageSize={10} onRowSelected={(item) => setData(item.data)} />
+    <div style={{ width: '80%' }} className={classes.root}>
+      <DataGrid pagination rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
       <div>
         <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
@@ -154,7 +154,7 @@ export default function AdminTeacherList() {
           <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this teacher {data.fullName}? 
+              Are you sure want to delete this teacher {data.fullName}?
           </DialogContentText>
           </DialogContent>
           <DialogActions>

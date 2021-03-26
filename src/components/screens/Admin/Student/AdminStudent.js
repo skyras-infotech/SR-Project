@@ -440,7 +440,7 @@ function AdminStudent () {
 
                 <Grid item xs={12} sm={12} md={12} lg={12} align="left">
                         <Button variant="contained" color="primary" type="submit" onClick={handleToggle} className={clsx(classes.roundedButton,classes.whiteColor)}>
-                            <Typography variant="h6">Add Student</Typography>
+                            <Typography variant="h6">{data == null ? "Add Student" : "Update Student"}</Typography>
                         </Button>
                 </Grid>
 

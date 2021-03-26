@@ -1,7 +1,7 @@
 import Admin from '../src/components/screens/Admin/Admin'
 import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDash'
 import AdminStudentDash from '../src/components/screens/Admin/Student/AdminStudentDash';
-import AdminParentTab from '../src/components/screens/Admin/Parent/AdminParentTab';
+import AdminParentDash from '../src/components/screens/Admin/Parent/AdminParentDash';
 import AdminSubjectTab from '../src/components/screens/Admin/Subject/AdminSubjectTab';
 import AdminExamTab from '../src/components/screens/Admin/Exam/AdminExamTab';
 import AdminHostelTab from './components/screens/Admin/Hostel/AdminHostelTab';
@@ -10,9 +10,6 @@ import AdminTransportTab from './components/screens/Admin/Transport/AdminTranspo
 import AdminNoticeboardTab from './components/screens/Admin/Noticeboard/AdminNotiesboardTab';
 import AdminHolidayTab from './components/screens/Admin/Holiday/AdminHolidayTab';
 import AdminAttendanceTab from './components/screens/Admin/Attendance/AdminAttendanceTab';
-import AdminManageMarkTab from './components/screens/Admin/ManageMarks/AdminManageMarkTab';
-import AdminFeePaymentTab from './components/screens/Admin/FeePayment/AdminFeePaymentTab';
-import AdminPaymentTab from './components/screens/Admin/Payment/AdminPaymentTab';
 import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
@@ -38,7 +35,7 @@ const dashboardRoutes = [
     {
         path:"/parents",
         name:"Parent",
-        components: AdminParentTab,
+        components: AdminParentDash,
         layout:"/admin"
     },
     {
@@ -57,24 +54,6 @@ const dashboardRoutes = [
         path:"/exams",
         name:"Exam",
         components: AdminExamTab,
-        layout:"/admin"
-    },
-    {
-        path:"/manage-mark",
-        name:"Manage Mark",
-        components: AdminManageMarkTab,
-        layout:"/admin"
-    },
-    {
-        path:"/payment",
-        name:"Payment",
-        components: AdminPaymentTab,
-        layout:"/admin"
-    },
-    {
-        path:"/fee-payment",
-        name:"Fee Payment",
-        components: AdminFeePaymentTab,
         layout:"/admin"
     },
     {

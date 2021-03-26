@@ -54,7 +54,7 @@ function createData(name, colon, value, name1, colon1, value1) {
 
   ];
 
-export default function AdminParentDetails() {
+export default function AdminParentDetails(prop) {
 
     const classes = usesStyles();
 
@@ -65,12 +65,12 @@ export default function AdminParentDetails() {
                             <img src={placeholder} alt="Img" className={classes.imgOptionsSize}/> 
                     </Grid>
                     <Grid item direction="column" align="left">
-                        <Typography variant="h6">Narendra Joshi</Typography>
+                        <Typography variant="h6">{prop.details.fullName}</Typography>
                         <Grid item container justify="space-between" alignItems="flex-end" >
                             <MailIcon fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>narendra@gmail.com</Typography>
+                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.email}</Typography>
                             <CallIcon  fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>7600965621</Typography>
+                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.mobile}</Typography>
                             <LocationOnIcon  fontSize="small" />
                             <Typography variant="body1" className={clsx(classes.margin)}>Navsari</Typography>
                         </Grid>

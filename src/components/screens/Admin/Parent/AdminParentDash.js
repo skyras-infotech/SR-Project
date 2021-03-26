@@ -3,8 +3,8 @@ import React from "react";
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
-import AdminTeacherList from "./AdminTeacherList";
-import img from '../../../../Images/11.png';
+import AdminParentList from "./AdminParentList";
+import img from '../../../../Images/12.png';
 
 const usesStyles = makeStyles((theme) => ({
     searchBox: {
@@ -26,11 +26,11 @@ const usesStyles = makeStyles((theme) => ({
         paddingLeft:"10px",
     },
     textColor:{
-        color:"blueviolet"
+        color:"blue"
     }
 }));
 
-export default function AdminTeacherDash() {
+export default function AdminParentDash() {
 
     const classes = usesStyles();
 
@@ -39,32 +39,32 @@ export default function AdminTeacherDash() {
             <Grid>
                 <img src={img} width="30%" height="50%" alt="teacher" className={classes.img}/>
             </Grid>
-            <Grid container xs={12} justify="space-between" alignItems="center">
+            <Grid container justify="space-between" alignItems="center">
                 <Grid item>
-                    <Typography variant="h4" className={classes.textColor}>Teacher List</Typography>
+                    <Typography variant="h4" className={classes.textColor}>Parent List</Typography>
                 </Grid>
                 <Grid item>
-                    <Link to="/teacher/add-teacher" style={{textDecoration:"none"}}>
+                    <Link to="/parent/add-parent" style={{textDecoration:"none"}}>
                     <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor:"pointer" }}>
                         <AddBoxRoundedIcon fontSize="large" />
-                        <Typography variant="h6">Add Teacher</Typography>
+                        <Typography variant="h6">Add Parent</Typography>
                     </Grid>
                     </Link>
                 </Grid>
                 <Grid item>
-                    <Grid container xs alignItems="center" className={classes.searchBox}>
+                    <Grid container alignItems="center" className={classes.searchBox}>
                         <SearchIcon className={classes.searchIconColor}/>
                         <InputBase
                             className={classes.paddingLeft}
-                            id="middleName"
-                            name="middleName"
+                            id="search"
+                            name="search"
                             placeholder="Search...."
                         />
                     </Grid>
                 </Grid>
             </Grid>
             <Grid style={{marginTop:"20px"}}>
-                <AdminTeacherList/>
+                <AdminParentList/>
             </Grid>
             
         </div>
