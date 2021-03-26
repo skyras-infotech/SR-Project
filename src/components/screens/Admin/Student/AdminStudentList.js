@@ -99,7 +99,6 @@ export default function AdminStudentList() {
     setDeleteOpen(false);
   };
 
-
   const classes = useStyles();
 
   const columns = [
@@ -224,11 +223,9 @@ export default function AdminStudentList() {
       { showList &&
         <div style={{ width: '85%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
           <DataGrid
-            pagination
             autoHeight={true}
             rows={rows}
             columns={columns}
-            showCellRightBorder
             onRowSelected={(item) => setData(item.data)}
           />
         </div>

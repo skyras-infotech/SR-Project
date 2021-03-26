@@ -2,7 +2,7 @@ import Admin from '../src/components/screens/Admin/Admin'
 import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDash'
 import AdminStudentDash from '../src/components/screens/Admin/Student/AdminStudentDash';
 import AdminParentDash from '../src/components/screens/Admin/Parent/AdminParentDash';
-import AdminSubjectTab from '../src/components/screens/Admin/Subject/AdminSubjectTab';
+import AdminSubjectDash from '../src/components/screens/Admin/Subject/AdminSubjectDash';
 import AdminExamTab from '../src/components/screens/Admin/Exam/AdminExamTab';
 import AdminHostelTab from './components/screens/Admin/Hostel/AdminHostelTab';
 import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkTab';
@@ -41,7 +41,7 @@ const dashboardRoutes = [
     {
         path:"/subjects",
         name:"Subject",
-        components: AdminSubjectTab,
+        components: AdminSubjectDash,
         layout:"/admin"
     },
     {

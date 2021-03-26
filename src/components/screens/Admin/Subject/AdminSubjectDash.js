@@ -3,8 +3,8 @@ import React from "react";
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
-import AdminParentList from "./AdminParentList";
-import img from '../../../../Images/5.png';
+import AdminSubjectList from "./AdminSubjectList";
+import img from '../../../../Images/13.png';
 
 const usesStyles = makeStyles((theme) => ({
     searchBox: {
@@ -20,17 +20,17 @@ const usesStyles = makeStyles((theme) => ({
         position:"fixed",
         bottom:0,
         right:0,
-        opacity:"0.3"
+        opacity:"0.5"
     },
     paddingLeft:{
         paddingLeft:"10px",
     },
     textColor:{
-        color:"blue"
+        color:"cadetblue"
     }
 }));
 
-export default function AdminParentDash() {
+export default function AdminSubjectDash() {
 
     const classes = usesStyles();
 
@@ -41,13 +41,13 @@ export default function AdminParentDash() {
             </Grid>
             <Grid container justify="space-between" alignItems="center">
                 <Grid item>
-                    <Typography variant="h4" className={classes.textColor}>Parent List</Typography>
+                    <Typography variant="h4" className={classes.textColor}>Subject List</Typography>
                 </Grid>
                 <Grid item>
-                    <Link to="/parent/add-parent" style={{textDecoration:"none"}}>
-                    <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor:"pointer" }}>
+                    <Link to="/subject/add-subject" style={{textDecoration:"none"}}>
+                    <Grid container xs alignItems="center" className={classes.textColor} style={{cursor:"pointer" }}>
                         <AddBoxRoundedIcon fontSize="large" />
-                        <Typography variant="h6">Add Parent</Typography>
+                        <Typography variant="h6">Add Subject</Typography>
                     </Grid>
                     </Link>
                 </Grid>
@@ -64,7 +64,7 @@ export default function AdminParentDash() {
                 </Grid>
             </Grid>
             <Grid style={{marginTop:"20px"}}>
-                <AdminParentList/>
+                <AdminSubjectList/>
             </Grid>
             
         </div>
