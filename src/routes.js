@@ -3,10 +3,9 @@ import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDas
 import AdminStudentDash from '../src/components/screens/Admin/Student/AdminStudentDash';
 import AdminParentDash from '../src/components/screens/Admin/Parent/AdminParentDash';
 import AdminSubjectDash from '../src/components/screens/Admin/Subject/AdminSubjectDash';
-import AdminExamTab from '../src/components/screens/Admin/Exam/AdminExamTab';
+import AdminExamDash from '../src/components/screens/Admin/Exam/AdminExamDash';
 import AdminHostelTab from './components/screens/Admin/Hostel/AdminHostelTab';
 import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkTab';
-import AdminTransportTab from './components/screens/Admin/Transport/AdminTransportTab';
 import AdminNoticeboardTab from './components/screens/Admin/Noticeboard/AdminNotiesboardTab';
 import AdminHolidayTab from './components/screens/Admin/Holiday/AdminHolidayTab';
 import AdminAttendanceTab from './components/screens/Admin/Attendance/AdminAttendanceTab';
@@ -53,7 +52,7 @@ const dashboardRoutes = [
     {
         path:"/exams",
         name:"Exam",
-        components: AdminExamTab,
+        components: AdminExamDash,
         layout:"/admin"
     },
     {
@@ -66,12 +65,6 @@ const dashboardRoutes = [
         path:"/homework",
         name:"Homework",
         components: AdminHomeworkTab,
-        layout:"/admin"
-    },
-    {
-        path:"/transport",
-        name:"Transport",
-        components: AdminTransportTab,
         layout:"/admin"
     },
     {

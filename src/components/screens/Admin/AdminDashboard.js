@@ -27,6 +27,7 @@ import AdminTeacher from './Teacher/AdminTeacher';
 import AdminStudent from './Student/AdminStudent';
 import AdminParent from './Parent/AdminParent';
 import AdminSubject from './Subject/AdminSubject';
+import AdminExam from './Exam/AdminExam';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -238,6 +239,12 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/subject/edit-subject">
                 <AdminSubject />
+            </Route>
+            <Route exact path="/exam/add-exam">
+                <AdminExam />
+            </Route>
+            <Route exact path="/exam/edit-exam">
+                <AdminExam />
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>
