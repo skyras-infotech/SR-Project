@@ -28,6 +28,12 @@ import AdminStudent from './Student/AdminStudent';
 import AdminParent from './Parent/AdminParent';
 import AdminSubject from './Subject/AdminSubject';
 import AdminExam from './Exam/AdminExam';
+import AdminHostelListDash from './Hostel/AdminHostelListDash';
+import AdminBedDash from './Hostel/AdminBedDash';
+import AdminRoomDash from './Hostel/AdminRoomDash';
+import AdminRoom from './Hostel/AdminRoom';
+import AdminBed from './Hostel/AdminBed';
+import AdminHostel from './Hostel/AdminHostel';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -245,6 +251,33 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/exam/edit-exam">
                 <AdminExam />
+            </Route>
+            <Route exact path="/hostel/add-hostel">
+                <AdminHostel />
+            </Route>
+            <Route exact path="/hostel/edit-hostel">
+                <AdminHostel />
+            </Route>
+            <Route exact path="/bed/add-bed">
+                <AdminBed />
+            </Route>
+            <Route exact path="/bed/edit-bed">
+                <AdminBed />
+            </Route>
+            <Route exact path="/room/add-room">
+                <AdminRoom />
+            </Route>
+            <Route exact path="/room/edit-room">
+                <AdminRoom />
+            </Route>
+            <Route exact path="/hostel/hostel-list">
+                <AdminHostelListDash />
+            </Route>
+            <Route exact path="/bed/bed-list">
+                <AdminBedDash />
+            </Route>
+            <Route exact path="/room/room-list">
+                <AdminRoomDash />
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>
