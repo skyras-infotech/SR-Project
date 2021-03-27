@@ -6,7 +6,7 @@ import AdminSubjectDash from '../src/components/screens/Admin/Subject/AdminSubje
 import AdminExamDash from '../src/components/screens/Admin/Exam/AdminExamDash';
 import AdminHostelDash from './components/screens/Admin/Hostel/AdminHostelDash';
 import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkTab';
-import AdminNoticeboardTab from './components/screens/Admin/Noticeboard/AdminNotiesboardTab';
+import AdminNoticeboardDash from './components/screens/Admin/Noticeboard/AdminNoticeboardDash';
 import AdminHolidayTab from './components/screens/Admin/Holiday/AdminHolidayTab';
 import AdminAttendanceTab from './components/screens/Admin/Attendance/AdminAttendanceTab';
 import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
@@ -70,7 +70,7 @@ const dashboardRoutes = [
     {
         path:"/noticeboard",
         name:"Noticeboard",
-        components: AdminNoticeboardTab,
+        components: AdminNoticeboardDash,
         layout:"/admin"
     },
     {
