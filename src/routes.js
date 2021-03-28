@@ -8,7 +8,7 @@ import AdminHostelDash from './components/screens/Admin/Hostel/AdminHostelDash';
 import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkTab';
 import AdminNoticeboardDash from './components/screens/Admin/Noticeboard/AdminNoticeboardDash';
 import AdminHolidayDash from './components/screens/Admin/Holiday/AdminHolidayDash';
-import AdminAttendanceTab from './components/screens/Admin/Attendance/AdminAttendanceTab';
+import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAttendanceDash';
 import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
@@ -46,7 +46,7 @@ const dashboardRoutes = [
     {
         path:"/attendance",
         name:"Attendance",
-        components: AdminAttendanceTab,
+        components: AdminAttendanceDash,
         layout:"/admin"
     },
     {

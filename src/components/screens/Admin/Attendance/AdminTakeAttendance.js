@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import {
   Button, Grid, Select, makeStyles, Backdrop, CircularProgress, MenuItem, FormHelperText,
-  Typography, FormControl, TextField
+  Typography, FormControl, TextField, Checkbox, FormControlLabel
 } from '@material-ui/core';
 import clsx from 'clsx';
 import { useForm, Controller } from 'react-hook-form';
@@ -63,39 +63,37 @@ export default function AdminAttendanceList() {
     setOpen(!open);
   };
 
-
   const columns = [
     { field: 'id', headerName: 'ID', width: 70, hide: true, headerClassName: 'headerStyle' },
     { field: 'rollNo', headerName: 'Roll No', width: 100, headerClassName: 'headerStyle' },
     { field: 'fullName', headerName: 'Student', width: 200, headerClassName: 'headerStyle' },
-    { field: 'attendance', headerName: 'Attendance', width: 200, headerClassName: 'headerStyle' },
-    { field: 'comment', headerName: 'Comments', width: 200, headerClassName: 'headerStyle' },
+    { field: 'comment', headerName: 'Comments', width: 250, headerClassName: 'headerStyle' },
   ];
 
   const rows = [
-    { id: 1, rollNo: 101, attendance: "present", fullName: 'Snow Jon', comment: "NA" },
-    { id: 2, rollNo: 101, attendance: "present", fullName: 'Lannister Cersei', comment: "NA" },
-    { id: 3, rollNo: 101, attendance: "present", fullName: 'Lannister Jaime', comment: "NA" },
-    { id: 4, rollNo: 101, attendance: "present", fullName: 'Stark patel', comment: "NA" },
-    { id: 5, rollNo: 101, attendance: "present", fullName: 'Targaryen patel', comment: "NA" },
-    { id: 6, rollNo: 101, attendance: "present", fullName: 'Melisandre patel', comment: "NA" },
-    { id: 7, rollNo: 101, attendance: "present", fullName: 'Clifford patel', comment: "NA" },
-    { id: 8, rollNo: 101, attendance: "present", fullName: 'Frances patel', comment: "NA" },
-    { id: 9, rollNo: 101, attendance: "present", fullName: 'Roxie patel', comment: "NA" },
-    { id: 10, rollNo: 101, attendance: "present", fullName: 'Snow patel', comment: "NA" },
-    { id: 11, rollNo: 101, attendance: "present", fullName: 'Lannister patel', comment: "NA" },
-    { id: 12, rollNo: 101, attendance: "present", fullName: 'Lannister patel', comment: "NA" },
-    { id: 13, rollNo: 101, attendance: "present", fullName: 'Stark patel', comment: "NA" },
-    { id: 14, rollNo: 101, attendance: "present", fullName: 'Targaryen patel', comment: "NA" },
-    { id: 15, rollNo: 101, attendance: "present", fullName: 'Melisandre patel', comment: "NA" },
-    { id: 16, rollNo: 101, attendance: "present", fullName: 'Clifford patel', comment: "NA" },
-    { id: 17, rollNo: 101, attendance: "present", fullName: 'Frances patel', comment: "NA" },
-    { id: 18, rollNo: 101, attendance: "present", fullName: 'Roxie patel', comment: "NA" },
+    { id: 1, rollNo: 101,  fullName: 'Snow Jon', comment: "NA" },
+    { id: 2, rollNo: 101,  fullName: 'Lannister Cersei', comment: "NA" },
+    { id: 3, rollNo: 101,  fullName: 'Lannister Jaime', comment: "NA" },
+    { id: 4, rollNo: 101,  fullName: 'Stark patel', comment: "NA" },
+    { id: 5, rollNo: 101,  fullName: 'Targaryen patel', comment: "NA" },
+    { id: 6, rollNo: 101,  fullName: 'Melisandre patel', comment: "NA" },
+    { id: 7, rollNo: 101,  fullName: 'Clifford patel', comment: "NA" },
+    { id: 8, rollNo: 101,  fullName: 'Frances patel', comment: "NA" },
+    { id: 9, rollNo: 101,  fullName: 'Roxie patel', comment: "NA" },
+    { id: 10, rollNo: 101,  fullName: 'Snow patel', comment: "NA" },
+    { id: 11, rollNo: 101,  fullName: 'Lannister patel', comment: "NA" },
+    { id: 12, rollNo: 101,  fullName: 'Lannister patel', comment: "NA" },
+    { id: 13, rollNo: 101,  fullName: 'Stark patel', comment: "NA" },
+    { id: 14, rollNo: 101,  fullName: 'Targaryen patel', comment: "NA" },
+    { id: 15, rollNo: 101,  fullName: 'Melisandre patel', comment: "NA" },
+    { id: 16, rollNo: 101,  fullName: 'Clifford patel', comment: "NA" },
+    { id: 17, rollNo: 101,  fullName: 'Frances patel', comment: "NA" },
+    { id: 18, rollNo: 101,  fullName: 'Roxie patel', comment: "NA" },
   ];
 
   const classes = useStyles();
   return (
-    <Grid container >
+    <Grid container spacing={3}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
         <Grid item container spacing={3} alignItems="flex-end">
 
@@ -179,7 +177,9 @@ export default function AdminAttendanceList() {
 
         </Grid>
       </form>
+
       { showList &&
+        
         <>
           <Grid container spacing={2} className={classes.marginTop}>
             <Grid item>
@@ -187,12 +187,17 @@ export default function AdminAttendanceList() {
             </Grid>
           </Grid>
           <div style={{ width: '60%' }} className={clsx(classes.root, classes.marginTop)}>
-            <DataGrid rows={rows} columns={columns} autoHeight={true}
-              onRowSelected={(item) => console.log(item)} />
+            <DataGrid checkboxSelection={true} rows={rows} columns={columns} autoHeight={true}
+              onSelectionModelChange={(item) => console.log(item)} />
           </div>
+          <Grid item xs={12} sm={12} md={12} lg={12} align="left">
+            <Button variant="contained" color="primary" className={clsx(classes.roundedButton, classes.whiteColor)}>
+              <Typography variant="h6">Save Attendance</Typography>
+            </Button>
+          </Grid>
         </>
-      }
 
+      }
     </Grid>
   );
 
