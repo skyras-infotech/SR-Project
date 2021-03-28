@@ -2,7 +2,7 @@ import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import {
   Button, Grid, Select, makeStyles, Backdrop, CircularProgress, MenuItem, FormHelperText,
-  Typography, FormControl, TextField, Checkbox, FormControlLabel
+  Typography, FormControl, TextField
 } from '@material-ui/core';
 import clsx from 'clsx';
 import { useForm, Controller } from 'react-hook-form';

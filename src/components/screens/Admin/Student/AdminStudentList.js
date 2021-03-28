@@ -123,7 +123,7 @@ export default function AdminStudentList() {
             color="primary"
             size="small"
             style={{ marginLeft: 16, backgroundColor: "lightblue", color: "black" }}>
-            <Link to={{ pathname: "student/edit-student", state: data }} style={{ textDecoration: "none", color: 'black' }}>Edit</Link>
+            <Link to={{ pathname: "/student/edit-student", state: data }} style={{ textDecoration: "none", color: 'black' }}>Edit</Link>
           </Button>
           <Button
             variant="contained"

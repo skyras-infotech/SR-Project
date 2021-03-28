@@ -36,7 +36,13 @@ import AdminBed from './Hostel/AdminBed';
 import AdminHostel from './Hostel/AdminHostel';
 import AdminNoticeboard from './Noticeboard/AdminNoticeboard';
 import AdminHoliday from './Holiday/AdminHoliday';
-import AdminTakeAttendance from './Attendance/AdminTakeAttendance'
+import AdminTakeAttendance from './Attendance/AdminTakeAttendance';
+import AdminBookDash from './Library/AdminBookDash';
+import AdminIssueBookDash from './Library/AdminIssueBookDash';
+import AdminMemberDash from './Library/AdminMemberDash';
+import AdminBook from './Library/AdminBook';
+import AdminIssueBook from './Library/AdminIssueBook';
+
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -296,6 +302,27 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/attendance/take-attendance">
                 <AdminTakeAttendance />
+            </Route>
+            <Route exact path="/library/book-list">
+                <AdminBookDash />
+            </Route>
+            <Route exact path="/library/issue-book-list">
+                <AdminIssueBookDash />
+            </Route>
+            <Route exact path="/library/member-list">
+                <AdminMemberDash />
+            </Route>
+            <Route exact path="/library/add-book">
+                <AdminBook />
+            </Route>
+            <Route exact path="/library/edit-book">
+                <AdminBook />
+            </Route>
+            <Route exact path="/library/issue-book">
+                <AdminIssueBook />
+            </Route>
+            <Route exact path="/library/edit-issue-book">
+                <AdminIssueBook />
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>

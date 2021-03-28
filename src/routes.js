@@ -9,7 +9,7 @@ import AdminHomeworkTab from './components/screens/Admin/Homework/AdminHomeworkT
 import AdminNoticeboardDash from './components/screens/Admin/Noticeboard/AdminNoticeboardDash';
 import AdminHolidayDash from './components/screens/Admin/Holiday/AdminHolidayDash';
 import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAttendanceDash';
-import AdminLibraryTab from './components/screens/Admin/Library/AdminLibraryTab';
+import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
 const dashboardRoutes = [
@@ -82,7 +82,7 @@ const dashboardRoutes = [
     {
         path:"/library",
         name:"Library",
-        components: AdminLibraryTab,
+        components: AdminLibraryDash,
         layout:"/admin"
     },
     {
