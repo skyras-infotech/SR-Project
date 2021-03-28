@@ -10,6 +10,8 @@ import AdminNoticeboardDash from './components/screens/Admin/Noticeboard/AdminNo
 import AdminHolidayDash from './components/screens/Admin/Holiday/AdminHolidayDash';
 import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAttendanceDash';
 import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDash';
+import AdminVideoUpdationDash from './components/screens/Admin/Video Updation/AdminVideoUpdationDash';
+
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
 const dashboardRoutes = [
@@ -83,6 +85,12 @@ const dashboardRoutes = [
         path:"/library",
         name:"Library",
         components: AdminLibraryDash,
+        layout:"/admin"
+    },
+    {
+        path:"/video-list",
+        name:"Video Updation",
+        components: AdminVideoUpdationDash,
         layout:"/admin"
     },
     {

@@ -43,6 +43,7 @@ import AdminMemberDash from './Library/AdminMemberDash';
 import AdminBook from './Library/AdminBook';
 import AdminIssueBook from './Library/AdminIssueBook';
 import AdminHomework from './Homework/AdminHomework';
+import AdminVideoUpdation from './Video Updation/AdminVideoUpdation';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -329,6 +330,12 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route exact path="/homework/edit-homework">
             <AdminHomework />
+          </Route>
+          <Route exact path="/video-updation/add-video-updation">
+            <AdminVideoUpdation />
+          </Route>
+          <Route exact path="/video-updation/edit-video-updation">
+            <AdminVideoUpdation />
           </Route>
           {dashboardRoutes.map((route) => (
             <Route exact path={route.path} key={route.path}>
