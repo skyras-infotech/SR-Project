@@ -1,10 +1,10 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
-import {IconButton,Grid,Avatar, Card,MenuItem,ListItemIcon,ListItemText,MenuList,ClickAwayListener} from '@material-ui/core';
+import { IconButton, Grid, Avatar, Card, MenuItem, ListItemIcon, ListItemText, MenuList, ClickAwayListener } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -19,10 +19,10 @@ import { ExpandMore } from '@material-ui/icons';
 import adminDashbardStyle from '../../Styles/adminDashboardStyle';
 import dashboardRoutes from '../../../routes';
 import theme from '../../../theme'
-import {NavLink, withRouter,Switch,Route} from 'react-router-dom';
+import { NavLink, withRouter, Switch, Route } from 'react-router-dom';
 import Popover from '@material-ui/core/Popover';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AdminTeacher from './Teacher/AdminTeacher';
 import AdminStudent from './Student/AdminStudent';
 import AdminParent from './Parent/AdminParent';
@@ -42,20 +42,20 @@ import AdminIssueBookDash from './Library/AdminIssueBookDash';
 import AdminMemberDash from './Library/AdminMemberDash';
 import AdminBook from './Library/AdminBook';
 import AdminIssueBook from './Library/AdminIssueBook';
-
+import AdminHomework from './Homework/AdminHomework';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
 theme.overrides = {
-    
-  MuiListItem:{
-    root:{
-      color:"green"
+
+  MuiListItem: {
+    root: {
+      color: "green"
     },
-    selected:{
+    selected: {
       borderRightStyle: "solid",
       borderColor: "yellow",
-      backgroundColor:"lightgrey",
+      backgroundColor: "lightgrey",
       borderWidth: 5,
     }
   }
@@ -67,14 +67,14 @@ function ResponsiveDrawer(props) {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handleListItemClick = (event, index) => {
-    setTitle(dashboardRoutes[index].name); 
+    setTitle(dashboardRoutes[index].name);
     setCurrentIndex(index);
   };
 
   useEffect(() => {
     const getIndex = localStorage.getItem("index");
-    setTitle(dashboardRoutes[JSON.parse(getIndex)].name); 
-  },[]);
+    setTitle(dashboardRoutes[JSON.parse(getIndex)].name);
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("index", JSON.stringify(currentIndex));
@@ -92,9 +92,9 @@ function ResponsiveDrawer(props) {
   const anchorRef = React.useRef(null);
 
   const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-          return;
-      }
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
   }
 
   const activeRoute = (routeName) => {
@@ -105,11 +105,11 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} >
         <Grid item xs={12} align="center" className={classes.margin}>
-            <img src={logo} alt="Logo" className={classes.large}/>
+          <img src={logo} alt="Logo" className={classes.large} />
         </Grid>
 
         <Grid item xs={12} align="center" className={classes.margin}>
-            <Typography variant="h5" className={classes.fontSize}>Sri Sathya Sai VidhyaNiketan</Typography>
+          <Typography variant="h5" className={classes.fontSize}>Sri Sathya Sai VidhyaNiketan</Typography>
         </Grid>
       </div>
       <Divider />
@@ -118,14 +118,14 @@ function ResponsiveDrawer(props) {
         {dashboardRoutes.map((prop, index) => (
           <NavLink to={prop.path} style={{ textDecoration: 'none' }} key={index}>
             <ListItem button key={index} className={classes.drawerSelectedBGColor} selected={activeRoute(prop.path)}
-                          onClick={(event)=>handleListItemClick(event,index)}>
-                <Typography variant="h6" >{prop.name}</Typography>
+              onClick={(event) => handleListItemClick(event, index)}>
+              <Typography variant="h6" >{prop.name}</Typography>
             </ListItem>
           </NavLink>
         ))}
       </List>
     </div>
-  );      
+  );
 
   const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -143,20 +143,20 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          
+
           <Grid item xs={12} container justify="space-between" alignItems="center">
-              <Grid item><Typography variant="h6" noWrap className={classes.dashboardTitle}>{title}</Typography></Grid>
-              <Grid item style={{cursor:'pointer'}}>
+            <Grid item><Typography variant="h6" noWrap className={classes.dashboardTitle}>{title}</Typography></Grid>
+            <Grid item style={{ cursor: 'pointer' }}>
               <PopupState variant="popover" popupId="demo-popup-popover">
                 {(popupState) => (
                   <div>
-                      <Card className={classes.margin} variant="outlined" {...bindTrigger(popupState)}>
-                        <Grid direction="row" item container alignItems="center">
-                              <Avatar src={person} alt="user"  className={classes.marginRight}/>
-                              <Divider orientation="vertical" flexItem />
-                              <ExpandMore/>
-                        </Grid>
-                      </Card>
+                    <Card className={classes.margin} variant="outlined" {...bindTrigger(popupState)}>
+                      <Grid direction="row" item container alignItems="center">
+                        <Avatar src={person} alt="user" className={classes.marginRight} />
+                        <Divider orientation="vertical" flexItem />
+                        <ExpandMore />
+                      </Grid>
+                    </Card>
                     <Popover
                       {...bindPopover(popupState)}
                       anchorOrigin={{
@@ -168,30 +168,30 @@ function ResponsiveDrawer(props) {
                         horizontal: 'center',
                       }}
                     >
-                        <ClickAwayListener onClickAway={handleClose}>
-                          <MenuList>
-                            <Link to="/account" style={{textDecoration:"none"}}>
+                      <ClickAwayListener onClickAway={handleClose}>
+                        <MenuList>
+                          <Link to="/account" style={{ textDecoration: "none" }}>
                             <MenuItem onClick={handleClose}>
-                                <ListItemIcon>
-                                    <AccountBoxOutlinedIcon fontSize="small" style={{color:"green"}}/>
-                                </ListItemIcon>
-                                <ListItemText primary="My Profile" />
+                              <ListItemIcon>
+                                <AccountBoxOutlinedIcon fontSize="small" style={{ color: "green" }} />
+                              </ListItemIcon>
+                              <ListItemText primary="My Profile" />
                             </MenuItem>
-                            </Link>
-                            <Divider />
-                            <MenuItem onClick={handleClose}>
-                                <ListItemIcon>
-                                        <ExitToAppIcon fontSize="small" style={{color:"green"}}/>
-                                </ListItemIcon>
-                                <ListItemText primary="Logout" />
-                            </MenuItem>
-                          </MenuList>
-                        </ClickAwayListener>
-                  </Popover>
+                          </Link>
+                          <Divider />
+                          <MenuItem onClick={handleClose}>
+                            <ListItemIcon>
+                              <ExitToAppIcon fontSize="small" style={{ color: "green" }} />
+                            </ListItemIcon>
+                            <ListItemText primary="Logout" />
+                          </MenuItem>
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Popover>
                   </div>
                 )}
               </PopupState>
-              </Grid>
+            </Grid>
           </Grid>
 
         </Toolbar>
@@ -231,106 +231,112 @@ function ResponsiveDrawer(props) {
         <div className={classes.toolbar} />
 
         <Switch>
-            <Route exact path="/teacher/add-teacher">
-                <AdminTeacher/>
+          <Route exact path="/teacher/add-teacher">
+            <AdminTeacher />
+          </Route>
+          <Route exact path="/teacher/edit-teacher">
+            <AdminTeacher />
+          </Route>
+          <Route exact path="/student/add-student">
+            <AdminStudent />
+          </Route>
+          <Route exact path="/student/edit-student">
+            <AdminStudent />
+          </Route>
+          <Route exact path="/parent/add-parent">
+            <AdminParent />
+          </Route>
+          <Route exact path="/parent/edit-parent">
+            <AdminParent />
+          </Route>
+          <Route exact path="/subject/add-subject">
+            <AdminSubject />
+          </Route>
+          <Route exact path="/subject/edit-subject">
+            <AdminSubject />
+          </Route>
+          <Route exact path="/exam/add-exam">
+            <AdminExam />
+          </Route>
+          <Route exact path="/exam/edit-exam">
+            <AdminExam />
+          </Route>
+          <Route exact path="/hostel/add-hostel">
+            <AdminHostel />
+          </Route>
+          <Route exact path="/hostel/edit-hostel">
+            <AdminHostel />
+          </Route>
+          <Route exact path="/bed/add-bed">
+            <AdminBed />
+          </Route>
+          <Route exact path="/bed/edit-bed">
+            <AdminBed />
+          </Route>
+          <Route exact path="/room/add-room">
+            <AdminRoom />
+          </Route>
+          <Route exact path="/room/edit-room">
+            <AdminRoom />
+          </Route>
+          <Route exact path="/hostel/hostel-list">
+            <AdminHostelListDash />
+          </Route>
+          <Route exact path="/bed/bed-list">
+            <AdminBedDash />
+          </Route>
+          <Route exact path="/room/room-list">
+            <AdminRoomDash />
+          </Route>
+          <Route exact path="/noticeboard/add-noticeboard">
+            <AdminNoticeboard />
+          </Route>
+          <Route exact path="/noticeboard/edit-noticeboard">
+            <AdminNoticeboard />
+          </Route>
+          <Route exact path="/holiday/add-holiday">
+            <AdminHoliday />
+          </Route>
+          <Route exact path="/holiday/edit-holiday">
+            <AdminHoliday />
+          </Route>
+          <Route exact path="/attendance/take-attendance">
+            <AdminTakeAttendance />
+          </Route>
+          <Route exact path="/library/book-list">
+            <AdminBookDash />
+          </Route>
+          <Route exact path="/library/issue-book-list">
+            <AdminIssueBookDash />
+          </Route>
+          <Route exact path="/library/member-list">
+            <AdminMemberDash />
+          </Route>
+          <Route exact path="/library/add-book">
+            <AdminBook />
+          </Route>
+          <Route exact path="/library/edit-book">
+            <AdminBook />
+          </Route>
+          <Route exact path="/library/issue-book">
+            <AdminIssueBook />
+          </Route>
+          <Route exact path="/library/edit-issue-book">
+            <AdminIssueBook />
+          </Route>
+          <Route exact path="/homework/add-homework">
+            <AdminHomework />
+          </Route>
+          <Route exact path="/homework/edit-homework">
+            <AdminHomework />
+          </Route>
+          {dashboardRoutes.map((route) => (
+            <Route exact path={route.path} key={route.path}>
+              <route.components />
             </Route>
-            <Route exact path="/teacher/edit-teacher">
-                <AdminTeacher />
-            </Route>
-            <Route exact path="/student/add-student">
-                <AdminStudent />
-            </Route>
-            <Route exact path="/student/edit-student">
-                <AdminStudent />
-            </Route>
-            <Route exact path="/parent/add-parent">
-                <AdminParent />
-            </Route>
-            <Route exact path="/parent/edit-parent">
-                <AdminParent />
-            </Route>
-            <Route exact path="/subject/add-subject">
-                <AdminSubject />
-            </Route>
-            <Route exact path="/subject/edit-subject">
-                <AdminSubject />
-            </Route>
-            <Route exact path="/exam/add-exam">
-                <AdminExam />
-            </Route>
-            <Route exact path="/exam/edit-exam">
-                <AdminExam />
-            </Route>
-            <Route exact path="/hostel/add-hostel">
-                <AdminHostel />
-            </Route>
-            <Route exact path="/hostel/edit-hostel">
-                <AdminHostel />
-            </Route>
-            <Route exact path="/bed/add-bed">
-                <AdminBed />
-            </Route>
-            <Route exact path="/bed/edit-bed">
-                <AdminBed />
-            </Route>
-            <Route exact path="/room/add-room">
-                <AdminRoom />
-            </Route>
-            <Route exact path="/room/edit-room">
-                <AdminRoom />
-            </Route>
-            <Route exact path="/hostel/hostel-list">
-                <AdminHostelListDash />
-            </Route>
-            <Route exact path="/bed/bed-list">
-                <AdminBedDash />
-            </Route>
-            <Route exact path="/room/room-list">
-                <AdminRoomDash />
-            </Route>
-            <Route exact path="/noticeboard/add-noticeboard">
-                <AdminNoticeboard />
-            </Route>
-            <Route exact path="/noticeboard/edit-noticeboard">
-                <AdminNoticeboard />
-            </Route>
-            <Route exact path="/holiday/add-holiday">
-                <AdminHoliday />
-            </Route>
-            <Route exact path="/holiday/edit-holiday">
-                <AdminHoliday />
-            </Route>
-            <Route exact path="/attendance/take-attendance">
-                <AdminTakeAttendance />
-            </Route>
-            <Route exact path="/library/book-list">
-                <AdminBookDash />
-            </Route>
-            <Route exact path="/library/issue-book-list">
-                <AdminIssueBookDash />
-            </Route>
-            <Route exact path="/library/member-list">
-                <AdminMemberDash />
-            </Route>
-            <Route exact path="/library/add-book">
-                <AdminBook />
-            </Route>
-            <Route exact path="/library/edit-book">
-                <AdminBook />
-            </Route>
-            <Route exact path="/library/issue-book">
-                <AdminIssueBook />
-            </Route>
-            <Route exact path="/library/edit-issue-book">
-                <AdminIssueBook />
-            </Route>
-            {dashboardRoutes.map((route) => (
-              <Route exact path={route.path} key={route.path}>
-                <route.components />
-              </Route>
-            ))}
+          ))}
         </Switch>
-            
+
       </main>
     </div>
   );
