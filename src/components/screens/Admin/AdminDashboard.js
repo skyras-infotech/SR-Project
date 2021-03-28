@@ -35,6 +35,7 @@ import AdminRoom from './Hostel/AdminRoom';
 import AdminBed from './Hostel/AdminBed';
 import AdminHostel from './Hostel/AdminHostel';
 import AdminNoticeboard from './Noticeboard/AdminNoticeboard';
+import AdminHoliday from './Holiday/AdminHoliday';
 
 
 const useStyles = makeStyles(adminDashbardStyle);
@@ -286,6 +287,12 @@ function ResponsiveDrawer(props) {
             </Route>
             <Route exact path="/noticeboard/edit-noticeboard">
                 <AdminNoticeboard />
+            </Route>
+            <Route exact path="/holiday/add-holiday">
+                <AdminHoliday />
+            </Route>
+            <Route exact path="/holiday/edit-holiday">
+                <AdminHoliday />
             </Route>
             {dashboardRoutes.map((route) => (
               <Route exact path={route.path} key={route.path}>

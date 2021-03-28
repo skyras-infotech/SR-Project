@@ -1,5 +1,5 @@
 import React from 'react';
-import { DataGrid, } from '@material-ui/data-grid';
+import { DataGrid } from '@material-ui/data-grid';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { Button, Grid, makeStyles, withStyles, Typography, Dialog, DialogContentText, DialogActions } from '@material-ui/core';
@@ -16,15 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   marginBottom: {
     marginBottom: theme.spacing(2),
-  },
-  whiteColor: {
-    color: "#fff"
-  },
-  roundedButton: {
-    borderRadius: 8,
-    marginBottom: theme.spacing(1),
-    width: theme.spacing(10)
-  },
+  }
 }));
 
 
