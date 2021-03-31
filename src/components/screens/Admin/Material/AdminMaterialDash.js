@@ -3,8 +3,8 @@ import React from "react";
 import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 import SearchIcon from '@material-ui/icons/Search';
 import { Link } from "react-router-dom";
-import AdminNoticeboardList from "./AdminNoticeboardList";
-import img from '../../../../Images/15.png';
+import AdminMaterialList from "./AdminMaterialList";
+import img from '../../../../Images/22.png';
 
 const usesStyles = makeStyles((theme) => ({
     searchBox: {
@@ -19,7 +19,7 @@ const usesStyles = makeStyles((theme) => ({
     img:{
         position:"fixed",
         bottom:25,
-        right:25,
+        right:0,
         opacity:"0.5"
     },
     paddingLeft:{
@@ -30,24 +30,24 @@ const usesStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function AdminNoticeboardDash() {
+export default function AdminMaterialDash() {
 
     const classes = usesStyles();
 
     return (
         <div>
             <Grid>
-                <img src={img} width="20%" height="45%" alt="teacher" className={classes.img}/>
+                <img src={img} width="30%" height="45%" alt="teacher" className={classes.img}/>
             </Grid>
             <Grid container justify="space-between" alignItems="center">
                 <Grid item>
-                    <Typography variant="h4" className={classes.textColor}>Noticeboard List</Typography>
+                    <Typography variant="h4" className={classes.textColor}>Material List</Typography>
                 </Grid>
                 <Grid item>
-                    <Link to="/noticeboard/add-noticeboard" style={{textDecoration:"none"}}>
+                    <Link to="/material/add-material" style={{textDecoration:"none"}}>
                     <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor:"pointer" }}>
                         <AddBoxRoundedIcon fontSize="large" />
-                        <Typography variant="h6">Add Notice</Typography>
+                        <Typography variant="h6">Add Material</Typography>
                     </Grid>
                     </Link>
                 </Grid>
@@ -64,7 +64,7 @@ export default function AdminNoticeboardDash() {
                 </Grid>
             </Grid>
             <Grid style={{marginTop:"20px"}}>
-                <AdminNoticeboardList/>
+                <AdminMaterialList/>
             </Grid>
             
         </div>

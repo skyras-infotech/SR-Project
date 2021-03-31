@@ -12,7 +12,9 @@ import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAtte
 import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDash';
 import AdminVideoUpdationDash from './components/screens/Admin/Video Updation/AdminVideoUpdationDash';
 import AdminMessageDash from './components/screens/Admin/Message/AdminMessageDash';
+import AdminMaterialDash from './components/screens/Admin/Material/AdminMaterialDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
+
 
 const dashboardRoutes = [
     {
@@ -85,6 +87,12 @@ const dashboardRoutes = [
         path:"/library",
         name:"Library",
         components: AdminLibraryDash,
+        layout:"/admin"
+    },
+    {
+        path:"/material",
+        name:"Material",
+        components: AdminMaterialDash,
         layout:"/admin"
     },
     {
