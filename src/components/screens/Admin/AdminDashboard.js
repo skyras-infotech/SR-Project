@@ -44,6 +44,9 @@ import AdminBook from './Library/AdminBook';
 import AdminIssueBook from './Library/AdminIssueBook';
 import AdminHomework from './Homework/AdminHomework';
 import AdminVideoUpdation from './Video Updation/AdminVideoUpdation';
+import AdminMessageCompose from './Message/AdminMessageCompose';
+import AdminMessageInbox from './Message/AdminMessageInbox';
+import AdminMessageSent from './Message/AdminMessageSent';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -336,6 +339,15 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route exact path="/video-updation/edit-video-updation">
             <AdminVideoUpdation />
+          </Route>
+          <Route exact path="/message/message-compose">
+            <AdminMessageCompose />
+          </Route>
+          <Route exact path="/message/message-inbox">
+            <AdminMessageInbox />
+          </Route>
+          <Route exact path="/message/message-sent">
+            <AdminMessageSent />
           </Route>
           {dashboardRoutes.map((route) => (
             <Route exact path={route.path} key={route.path}>

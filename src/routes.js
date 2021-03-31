@@ -11,7 +11,7 @@ import AdminHolidayDash from './components/screens/Admin/Holiday/AdminHolidayDas
 import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAttendanceDash';
 import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDash';
 import AdminVideoUpdationDash from './components/screens/Admin/Video Updation/AdminVideoUpdationDash';
-
+import AdminMessageDash from './components/screens/Admin/Message/AdminMessageDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
 const dashboardRoutes = [
@@ -91,6 +91,12 @@ const dashboardRoutes = [
         path:"/video-list",
         name:"Video Updation",
         components: AdminVideoUpdationDash,
+        layout:"/admin"
+    },
+    {
+        path:"/message",
+        name:"Message",
+        components: AdminMessageDash,
         layout:"/admin"
     },
     {
