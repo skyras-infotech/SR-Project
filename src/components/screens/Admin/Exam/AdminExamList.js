@@ -99,7 +99,7 @@ export default function AdminExamList() {
             color="primary"
             size="small"
             style={{ marginLeft: 16, backgroundColor: "lightblue", color: "black" }}>
-            <Link to={{ pathname: "exam/edit-exam", state: data }} style={{ textDecoration: "none", color: 'black' }}>Edit</Link>
+            <Link to={{ pathname: "/exam/edit-exam", state: data }} style={{ textDecoration: "none", color: 'black' }}>Edit</Link>
           </Button>
           <Button
             variant="contained"

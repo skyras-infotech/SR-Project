@@ -48,6 +48,7 @@ import AdminMessageCompose from './Message/AdminMessageCompose';
 import AdminMessageInbox from './Message/AdminMessageInbox';
 import AdminMessageSent from './Message/AdminMessageSent';
 import AdminMaterial from './Material/AdminMaterial';
+import AdminReportsAndRecords from './ReportsAndRecords/AdminReportsAndRecords';
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -355,6 +356,12 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route exact path="/material/edit-material">
             <AdminMaterial />
+          </Route>
+          <Route exact path="/reports-records/add-reports-records">
+            <AdminReportsAndRecords />
+          </Route>
+          <Route exact path="/reports-records/edit-reports-records">
+            <AdminReportsAndRecords />
           </Route>
           {dashboardRoutes.map((route) => (
             <Route exact path={route.path} key={route.path}>

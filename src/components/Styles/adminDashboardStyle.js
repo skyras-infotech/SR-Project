@@ -179,7 +179,7 @@ const adminDashbardStyle = theme => ({
         fontSize:28
       },
       drawerSelectedBGColor:{
-        paddingLeft:75
+        paddingLeft:50
       },
       menuButton: {
         marginRight: theme.spacing(2),
