@@ -16,6 +16,7 @@ import AdminMaterialDash from './components/screens/Admin/Material/AdminMaterial
 import AdminTimeTableDash from './components/screens/Admin/TimeTable/AdminTimeTableDash';
 import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
+import AdminWeeklyAssessmentDash from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentDash';
 
 
 const dashboardRoutes = [
@@ -113,6 +114,12 @@ const dashboardRoutes = [
         path:"/message",
         name:"Message",
         components: AdminMessageDash,
+        layout:"/admin"
+    },
+    {
+        path:"/assessment",
+        name:"Assessment",
+        components: AdminWeeklyAssessmentDash,
         layout:"/admin"
     },
     {
