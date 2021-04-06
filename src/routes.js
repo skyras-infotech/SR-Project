@@ -17,6 +17,7 @@ import AdminTimeTableDash from './components/screens/Admin/TimeTable/AdminTimeTa
 import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 import AdminWeeklyAssessmentDash from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentDash';
+import AdminRemedialDash from './components/screens/Admin/Remedial/AdminRemedialDash';
 
 
 const dashboardRoutes = [
@@ -114,6 +115,12 @@ const dashboardRoutes = [
         path:"/message",
         name:"Message",
         components: AdminMessageDash,
+        layout:"/admin"
+    },
+    {
+        path:"/remedial",
+        name:"Remedial",
+        components: AdminRemedialDash,
         layout:"/admin"
     },
     {

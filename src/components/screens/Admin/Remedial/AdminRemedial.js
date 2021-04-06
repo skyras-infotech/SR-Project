@@ -38,7 +38,7 @@ const usesStyles = makeStyles((theme) => ({
     },
 }));
 
-function AdminWeeklyAssessment() {
+function AdminRemedial() {
 
     let location = useLocation();
     const [data, setData] = React.useState(location.state);
@@ -89,7 +89,7 @@ function AdminWeeklyAssessment() {
                             <Controller
                                 render={(props) => (
                                     <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">Select class</MenuItem>
+                                        <MenuItem value="">--Select class--</MenuItem>
                                         <MenuItem value="Class 1">Class 1</MenuItem>
                                         <MenuItem value="Class 2">Class 2</MenuItem>
                                         <MenuItem value="Class 3">Class 3</MenuItem>
@@ -112,7 +112,7 @@ function AdminWeeklyAssessment() {
                             <Controller
                                 render={(props) => (
                                     <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">Select section</MenuItem>
+                                        <MenuItem value="">--Select section--</MenuItem>
                                         <MenuItem value="Section A">Section A</MenuItem>
                                         <MenuItem value="Section B">Section B</MenuItem>
                                         <MenuItem value="Section C">Section C</MenuItem>
@@ -210,7 +210,7 @@ function AdminWeeklyAssessment() {
 
                     <Grid item xs={12} sm={12} md={12} lg={12} align="left">
                         <Button variant="contained" color="primary" type="submit" onClick={handleToggle} className={clsx(classes.roundedButton, classes.whiteColor)}>
-                            <Typography variant="h6">{data == null ? "Add Assessment" : "Update Assessment"}</Typography>
+                            <Typography variant="h6">{data == null ? "Add Remedial" : "Update Remedial"}</Typography>
                         </Button>
                     </Grid>
 
@@ -223,4 +223,4 @@ function AdminWeeklyAssessment() {
     );
 }
 
-export default AdminWeeklyAssessment;
+export default AdminRemedial;
