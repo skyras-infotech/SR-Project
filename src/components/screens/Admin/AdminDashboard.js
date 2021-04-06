@@ -49,6 +49,8 @@ import AdminMessageInbox from './Message/AdminMessageInbox';
 import AdminMessageSent from './Message/AdminMessageSent';
 import AdminMaterial from './Material/AdminMaterial';
 import AdminReportsAndRecords from './ReportsAndRecords/AdminReportsAndRecords';
+import AdminTimeTable from './TimeTable/AdminTimeTable';
+
 
 const useStyles = makeStyles(adminDashbardStyle);
 
@@ -362,6 +364,12 @@ function ResponsiveDrawer(props) {
           </Route>
           <Route exact path="/reports-records/edit-reports-records">
             <AdminReportsAndRecords />
+          </Route>
+          <Route exact path="/timetable/add-timetable">
+            <AdminTimeTable />
+          </Route>
+          <Route exact path="/timetable/edit-timetable">
+            <AdminTimeTable />
           </Route>
           {dashboardRoutes.map((route) => (
             <Route exact path={route.path} key={route.path}>

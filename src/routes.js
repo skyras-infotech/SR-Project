@@ -13,6 +13,7 @@ import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDas
 import AdminVideoUpdationDash from './components/screens/Admin/Video Updation/AdminVideoUpdationDash';
 import AdminMessageDash from './components/screens/Admin/Message/AdminMessageDash';
 import AdminMaterialDash from './components/screens/Admin/Material/AdminMaterialDash';
+import AdminTimeTableDash from './components/screens/Admin/TimeTable/AdminTimeTableDash';
 import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsDash';
 import AccountInfo from './components/screens/Admin/AccountInfo';
 
@@ -88,6 +89,12 @@ const dashboardRoutes = [
         path:"/library",
         name:"Library",
         components: AdminLibraryDash,
+        layout:"/admin"
+    },
+    {
+        path:"/timetable",
+        name:"Time Table",
+        components: AdminTimeTableDash,
         layout:"/admin"
     },
     {

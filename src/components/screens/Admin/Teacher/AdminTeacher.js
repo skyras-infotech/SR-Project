@@ -6,8 +6,6 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import placeholder from '../../../../Images/placeholder.jpg';
-import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
 import { useForm, Controller } from 'react-hook-form';
 import { useLocation } from "react-router-dom";
 
@@ -52,7 +50,12 @@ function AdminTeacher() {
     };
 
     const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (data) => {
+    
+        data["image"] = data.image[0].name;
+        let teacherData = JSON.stringify(data);
+        console.log(teacherData);
+    }
 
     const classes = usesStyles();
 
@@ -150,32 +153,24 @@ function AdminTeacher() {
                     </Grid>
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of birth</Typography>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <Controller
-                                render={(props) => (
-                                    <KeyboardDatePicker
-                                        disableToolbar
-                                        variant="inline"
-                                        inputVariant="outlined"
-                                        format="dd/MM/yyyy"
-                                        value={props.value}
-                                        onChange={props.onChange}
-                                        fullWidth
-                                        error={Boolean(errors.dob)}
-                                        helperText={errors.dob?.message}
-                                    />
-                                )}
-                                name="dob"
-                                defaultValue={null}
-                                control={control}
-                                rules={{
-                                    required: "Please select date of birth"
-                                }}
-                            />
-                        </MuiPickersUtilsProvider>
+                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of Birth</Typography>
+                        <TextField
+                            id="dob"
+                            name="dob"
+                            type="date"
+                            variant="outlined"
+                            defaultValue=""
+                            fullWidth
+                            inputRef={register({
+                                required: "Please enter date of birth"
+                            })}
+                            error={Boolean(errors.dob)}
+                            helperText={errors.dob?.message}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
                     </Grid>
-
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Address</Typography>
@@ -335,12 +330,12 @@ function AdminTeacher() {
                             <Controller
                                 render={(props) => (
                                     <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">Select Hours</MenuItem>
+                                        <MenuItem value="">--Select Hours--</MenuItem>
                                         <MenuItem value="Part">Part Time</MenuItem>
                                         <MenuItem value="Full">Full Time</MenuItem>
                                     </Select>
                                 )}
-                                name="class"
+                                name="hour"
                                 control={control}
                                 defaultValue=""
                             />
