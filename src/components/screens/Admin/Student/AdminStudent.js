@@ -88,6 +88,17 @@ function AdminStudent() {
         setOpen(!open);
     };
 
+    const [showStream, setShowStream] = React.useState(false);
+
+    const handleSelectClass = (event) => {
+        if (event.target.textContent === "Class 11" || event.target.textContent === "Class 12") {
+            setShowStream(true);
+        }
+        else {
+            setShowStream(false);
+        }
+    }
+
     return (
         <Grid container>
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -98,11 +109,13 @@ function AdminStudent() {
                         <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
                             <Controller
                                 render={(props) => (
-                                    <Select value={props.value} onChange={props.onChange}>
+                                    <Select value={props.value} onChange={props.onChange} onClose={handleSelectClass}>
                                         <MenuItem value="">Select class</MenuItem>
                                         <MenuItem value="Class 1">Class 1</MenuItem>
                                         <MenuItem value="Class 2">Class 2</MenuItem>
                                         <MenuItem value="Class 3">Class 3</MenuItem>
+                                        <MenuItem value="Class 11">Class 11</MenuItem>
+                                        <MenuItem value="Class 12">Class 12</MenuItem>
                                     </Select>
                                 )}
                                 name="class"
@@ -139,6 +152,30 @@ function AdminStudent() {
                         </FormControl>
                     </Grid>
 
+                    {
+                        showStream &&
+                        <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
+                            <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select Stream</Typography>
+                            <FormControl variant="outlined" fullWidth error={Boolean(errors.stream)}>
+                                <Controller
+                                    render={(props) => (
+                                        <Select value={props.value} onChange={props.onChange}>
+                                            <MenuItem value="">Select stream</MenuItem>
+                                            <MenuItem value="Science">Science</MenuItem>
+                                            <MenuItem value="Commerce">Commerce</MenuItem>
+                                        </Select>
+                                    )}
+                                    name="stream"
+                                    control={control}
+                                    defaultValue=""
+                                    rules={{
+                                        required: "Please select stream"
+                                    }}
+                                />
+                                <FormHelperText>{errors.stream?.message}</FormHelperText>
+                            </FormControl>
+                        </Grid>
+                    }
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Roll Number</Typography>

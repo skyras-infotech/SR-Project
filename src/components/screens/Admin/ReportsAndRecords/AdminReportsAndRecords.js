@@ -2,7 +2,7 @@ import {
     Grid, Select, makeStyles, Backdrop, CircularProgress,
     Typography, FormControl, FormControlLabel, Checkbox, Button, MenuItem, FormHelperText
 } from '@material-ui/core';
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { useForm, Controller } from 'react-hook-form';
 import { useLocation } from "react-router-dom";
@@ -39,7 +39,25 @@ const usesStyles = makeStyles((theme) => ({
 function AdminReportsAndRecords() {
 
     let location = useLocation();
-    const data = location.state;
+    let ls = location.state;
+    const [data, setData] = useState({
+        hw: ls !== undefined ? ls.hw : false,
+        nc: ls !== undefined ? ls.nc : false,
+        lp: ls !== undefined ? ls.lp : false,
+        rc: ls !== undefined ? ls.rc : false,
+        act: ls !== undefined ? ls.act : false,
+        dc: ls !== undefined ? ls.dc : false,
+        od: ls !== undefined ? ls.od : false,
+        bc: ls !== undefined ? ls.bc : false,
+        cca: ls !== undefined ? ls.cca : false,
+        ass: ls !== undefined ? ls.ass : false,
+        ap: ls !== undefined ? ls.ap : false,
+        cc: ls !== undefined ? ls.cc : false,
+    });
+
+    const handleData = (e) => {
+        setData({ ...data, [e.target.name]: e.target.checked });
+    };
 
     const { register, handleSubmit, control, errors } = useForm();
     const onSubmit = (data) => console.log(data);
@@ -73,7 +91,7 @@ function AdminReportsAndRecords() {
                                 )}
                                 name="teacher"
                                 control={control}
-                                defaultValue={data == null ? "" : data.teacher}
+                                defaultValue={ls == null ? "" : ls.teacher}
                                 rules={{
                                     required: "Please select teacher"
                                 }}
@@ -85,7 +103,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="hw" checked={data == null ? false : data.hw}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="hw" checked={data.hw} onChange={handleData} />}
                                 label="Homework"
                             />
                         </FormControl>
@@ -94,7 +112,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="nc" checked={data == null ? false : data.nc}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="nc" checked={data.nc} onChange={handleData} />}
                                 label="Notebook Correction"
                             />
                         </FormControl>
@@ -103,7 +121,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="lp" checked={data == null ? false : data.lp}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="lp" checked={data.lp} onChange={handleData} />}
                                 label="Lesson Plan"
                             />
                         </FormControl>
@@ -112,7 +130,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="rc" checked={data == null ? false : data.rc} />}
+                                control={<Checkbox inputRef={register} color="primary" name="rc" checked={data.rc} onChange={handleData} />}
                                 label="Remedial Class"
                             />
                         </FormControl>
@@ -121,7 +139,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="act" checked={data == null ? false : data.act}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="act" checked={data.act} onChange={handleData} />}
                                 label="Activity"
                             />
                         </FormControl>
@@ -130,7 +148,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="dc" checked={data == null ? false : data.dc}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="dc" checked={data.dc} onChange={handleData} />}
                                 label="Digital Classroom"
                             />
                         </FormControl>
@@ -139,7 +157,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="od" checked={data == null ? false : data.od}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="od" checked={data.od} onChange={handleData} />}
                                 label="Overall Discipline"
                             />
                         </FormControl>
@@ -148,7 +166,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="bc" checked={data == null ? false : data.bc}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="bc" checked={data.bc} onChange={handleData} />}
                                 label="Behavior Card"
                             />
                         </FormControl>
@@ -157,7 +175,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="cca" checked={data == null ? false : data.cca}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="cca" checked={data.cca} onChange={handleData} />}
                                 label="CCA"
                             />
                         </FormControl>
@@ -166,7 +184,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="ass" checked={data == null ? false : data.ass}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="ass" checked={data.ass} onChange={handleData} />}
                                 label="Assessment"
                             />
                         </FormControl>
@@ -175,7 +193,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="ap" checked={data == null ? false : data.ap}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="ap" checked={data.ap} onChange={handleData} />}
                                 label="Appraisal Performance"
                             />
                         </FormControl>
@@ -184,7 +202,7 @@ function AdminReportsAndRecords() {
                     <Grid item align="left" xs={12} sm={12} md={2} lg={2}>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="cc" checked={data == null ? false : data.cc}/>}
+                                control={<Checkbox inputRef={register} color="primary" name="cc" checked={data.cc} onChange={handleData} />}
                                 label="Code of Conduct"
                             />
                         </FormControl>
@@ -193,7 +211,7 @@ function AdminReportsAndRecords() {
 
                     <Grid item xs={12} sm={12} md={12} lg={12} align="left">
                         <Button variant="contained" type="submit" onClick={handleToggle} color="primary" className={clsx(classes.roundedButton, classes.whiteColor)}>
-                            <Typography variant="h6">{data == null ? "Add Report" : "Update Report"}</Typography>
+                            <Typography variant="h6">{ls == null ? "Add Report" : "Update Report"}</Typography>
                         </Button>
                     </Grid>
 

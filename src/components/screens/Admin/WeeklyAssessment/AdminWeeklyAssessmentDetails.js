@@ -41,7 +41,7 @@ const StyledTableCell = withStyles((theme) => ({
     },
   }))(TableRow);
 
-export default function AdminStudentDetails(prop) {
+export default function AdminWeeklyAssessmentDetails(prop) {
 
     const classes = usesStyles();
 

@@ -41,7 +41,18 @@ const usesStyles = makeStyles((theme) => ({
 function AdminTeacher() {
 
     let location = useLocation();
-    const [data, setData] = useState(location.state);
+
+    let [data,setData] = useState(location.state);
+    
+    const [cb, setCB] = useState({
+        cv: data !== undefined ? data.cv : false,
+        educer: data !== undefined ? data.educer : false,
+        excer: data !== undefined ? data.excer : false,
+    });
+    
+    const handleCheckbox = (e) => {
+        setCB({ ...cb, [e.target.name]: e.target.checked });
+    };
 
     const handleData = (e) => {
         if (data !== undefined) {
@@ -49,10 +60,19 @@ function AdminTeacher() {
         }
     };
 
+    const [gender, setGender] = React.useState(
+        data !== undefined ? data.teacher_gender : "male"
+    );
+    const handleGender = (event) => {
+        setGender(event.target.value);
+    };
+    const [base64,setBase64] = useState("");
+
+
     const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = (data) => {
-    
-        data["image"] = data.image[0].name;
+    const onSubmit =  (data) => {
+        console.log(base64);
+        data["image"] = base64;
         let teacherData = JSON.stringify(data);
         console.log(teacherData);
     }
@@ -61,8 +81,23 @@ function AdminTeacher() {
 
     const [file, setFile] = useState(null);
 
+    const decodeImage = (e) => {
+        let img = e.target.files[0];
+        if(img){
+            const reader = new FileReader();
+            reader.onload = (readerEvt) => {
+                let binaryString = readerEvt.target.result;
+                setBase64(btoa(binaryString))
+            }
+            reader.readAsBinaryString(img)            
+        }
+        console.log(img);
+        
+    }
+
     const fileHandler = (e) => {
-        setFile(e.target.files[0])
+        setFile(e.target.files[0]);
+        decodeImage(e);
     };
 
     const [values, setValues] = React.useState({
@@ -144,7 +179,7 @@ function AdminTeacher() {
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Gender</Typography>
                         <FormControl error={Boolean(errors.gender)}>
-                            <RadioGroup row name="gender" className={classes.textColor}>
+                            <RadioGroup row name="gender" className={classes.textColor} value={gender} onChange={handleGender}>
                                 <FormControlLabel value="male" control={<Radio color="black" inputRef={register({ required: "Please select gender" })} />} label="Male" />
                                 <FormControlLabel value="female" control={<Radio color="black" inputRef={register({ required: "Please select gender" })} />} label="Female" />
                             </RadioGroup>
@@ -390,15 +425,15 @@ function AdminTeacher() {
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Submitted Documents</Typography>
                         <FormControl>
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="cv" />}
+                                control={<Checkbox inputRef={register} color="primary" name="cv" checked={cb.cv} onChange={handleCheckbox} />}
                                 label="Curriculam Vitae"
                             />
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="educer" />}
+                                control={<Checkbox inputRef={register} color="primary" name="educer" checked={cb.educer} onChange={handleCheckbox} />}
                                 label="Education Certificate"
                             />
                             <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="excer" />}
+                                control={<Checkbox inputRef={register} color="primary" name="excer" checked={cb.excer} onChange={handleCheckbox} />}
                                 label="Experience Certificate"
                             />
                         </FormControl>

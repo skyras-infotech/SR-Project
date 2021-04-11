@@ -18,6 +18,8 @@ import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRec
 import AccountInfo from './components/screens/Admin/AccountInfo';
 import AdminWeeklyAssessmentDash from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentDash';
 import AdminRemedialDash from './components/screens/Admin/Remedial/AdminRemedialDash';
+import AdminOneClickMigration from './components/screens/Admin/OneClickMigration/AdminOneClickMigration';
+import AdminStudyHoursDash from './components/screens/Admin/StudyHours/AdminStudyHoursDash';
 
 
 const dashboardRoutes = [
@@ -124,6 +126,12 @@ const dashboardRoutes = [
         layout:"/admin"
     },
     {
+        path:"/study-hours",
+        name:"Study Hours",
+        components: AdminStudyHoursDash,
+        layout:"/admin"
+    },
+    {
         path:"/assessment",
         name:"Assessment",
         components: AdminWeeklyAssessmentDash,
@@ -133,6 +141,12 @@ const dashboardRoutes = [
         path:"/reports-and-records",
         name:"Reports & Record",
         components: AdminReportsAndRecordsDash,
+        layout:"/admin"
+    },
+    {
+        path:"/one-click-migrations",
+        name:"One Click Migrations",
+        components: AdminOneClickMigration,
         layout:"/admin"
     },
     {
