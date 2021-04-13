@@ -15,7 +15,7 @@ import AdminMessageDash from './components/screens/Admin/Message/AdminMessageDas
 import AdminMaterialDash from './components/screens/Admin/Material/AdminMaterialDash';
 import AdminTimeTableDash from './components/screens/Admin/TimeTable/AdminTimeTableDash';
 import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsDash';
-import AccountInfo from './components/screens/Admin/AccountInfo';
+import AccountInfo from './components/screens/Admin/Account/AccountInfo';
 import AdminWeeklyAssessmentDash from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentDash';
 import AdminRemedialDash from './components/screens/Admin/Remedial/AdminRemedialDash';
 import AdminOneClickMigration from './components/screens/Admin/OneClickMigration/AdminOneClickMigration';

@@ -1,18 +1,23 @@
-import {
-    RadioGroup, FormControlLabel, Radio, Grid, Select, makeStyles, InputAdornment, TextField,
-    Typography, FormControl, FormHelperText, Backdrop, MenuItem, CircularProgress, IconButton, OutlinedInput, Button, Checkbox
-} from '@material-ui/core';
-import React, { useState } from 'react';
+import React from 'react';
 import clsx from 'clsx';
+import {
+    RadioGroup, FormControlLabel, Radio, Grid, makeStyles, InputAdornment, TextField,
+    Typography, FormControl, IconButton, OutlinedInput, FormHelperText, Button, Backdrop, CircularProgress
+} from '@material-ui/core';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import placeholder from '../../../../Images/placeholder.jpg';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
 import { useForm, Controller } from 'react-hook-form';
 import { useLocation } from "react-router-dom";
-
 
 const usesStyles = makeStyles((theme) => ({
     margin: {
         margin: theme.spacing(0.5),
+    },
+    topleftmargin: {
+        marginLeft: theme.spacing(0.2),
+        marginTop: theme.spacing(0.5),
     },
     root: {
         backgroundColor: "#F89",
@@ -35,24 +40,12 @@ const usesStyles = makeStyles((theme) => ({
         zIndex: theme.zIndex.drawer + 1,
         color: '#fff',
     },
-
 }));
 
-function AdminTeacher() {
+function EditAccount() {
 
     let location = useLocation();
-
-    let [data, setData] = useState(location.state);
-
-    const [cb, setCB] = useState({
-        cv: data !== undefined ? data.cv : false,
-        educer: data !== undefined ? data.educer : false,
-        excer: data !== undefined ? data.excer : false,
-    });
-
-    const handleCheckbox = (e) => {
-        setCB({ ...cb, [e.target.name]: e.target.checked });
-    };
+    const [data, setData] = React.useState(location.state);
 
     const handleData = (e) => {
         if (data !== undefined) {
@@ -60,47 +53,16 @@ function AdminTeacher() {
         }
     };
 
-    const [gender, setGender] = React.useState(
-        data !== undefined ? data.teacher_gender : "male"
-    );
-    const handleGender = (event) => {
-        setGender(event.target.value);
-    };
-    const [base64, setBase64] = useState("");
-
-
     const { register, handleSubmit, control, errors } = useForm();
-    const onSubmit = (data) => {
-        if (errors !== {}) {
-            handleToggle();
-        }
-        data["image"] = base64;
-        let teacherData = JSON.stringify(data);
-        console.log(teacherData);
-    }
+    const onSubmit = (data) => console.log(data);
 
     const classes = usesStyles();
 
-    const [file, setFile] = useState(null);
-
-    const decodeImage = (e) => {
-        let img = e.target.files[0];
-        if (img) {
-            const reader = new FileReader();
-            reader.onload = (readerEvt) => {
-                let binaryString = readerEvt.target.result;
-                setBase64(btoa(binaryString))
-            }
-            reader.readAsBinaryString(img)
-        }
-        console.log(img);
-
-    }
+    const [file, setFile] = React.useState(null);
 
     const fileHandler = (e) => {
-        setFile(e.target.files[0]);
-        decodeImage(e);
-    };
+        setFile(e.target.files[0])
+    }
 
     const [values, setValues] = React.useState({
         password: '',
@@ -123,7 +85,7 @@ function AdminTeacher() {
         setOpen(false);
     };
     const handleToggle = () => {
-        setOpen(true);
+        setOpen(!open);
     };
 
     return (
@@ -134,6 +96,7 @@ function AdminTeacher() {
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>First Name</Typography>
                         <TextField
+
                             id="firstName"
                             name="fullName"
                             fullWidth
@@ -181,7 +144,7 @@ function AdminTeacher() {
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Gender</Typography>
                         <FormControl error={Boolean(errors.gender)}>
-                            <RadioGroup row name="gender" className={classes.textColor} value={gender} onChange={handleGender}>
+                            <RadioGroup row name="gender" className={classes.textColor}>
                                 <FormControlLabel value="male" control={<Radio color="black" inputRef={register({ required: "Please select gender" })} />} label="Male" />
                                 <FormControlLabel value="female" control={<Radio color="black" inputRef={register({ required: "Please select gender" })} />} label="Female" />
                             </RadioGroup>
@@ -190,24 +153,32 @@ function AdminTeacher() {
                     </Grid>
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of Birth</Typography>
-                        <TextField
-                            id="dob"
-                            name="dob"
-                            type="date"
-                            variant="outlined"
-                            defaultValue=""
-                            fullWidth
-                            inputRef={register({
-                                required: "Please enter date of birth"
-                            })}
-                            error={Boolean(errors.dob)}
-                            helperText={errors.dob?.message}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Date of birth</Typography>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <Controller
+                                render={(props) => (
+                                    <KeyboardDatePicker
+                                        disableToolbar
+                                        variant="inline"
+                                        inputVariant="outlined"
+                                        format="dd/MM/yyyy"
+                                        value={props.value}
+                                        onChange={props.onChange}
+                                        fullWidth
+                                        error={Boolean(errors.dob)}
+                                        helperText={errors.dob?.message}
+                                    />
+                                )}
+                                name="dob"
+                                defaultValue={null}
+                                control={control}
+                                rules={{
+                                    required: "Please select date of birth"
+                                }}
+                            />
+                        </MuiPickersUtilsProvider>
                     </Grid>
+
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Address</Typography>
@@ -272,52 +243,6 @@ function AdminTeacher() {
                     </Grid>
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select class</Typography>
-                        <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
-                            <Controller
-                                render={(props) => (
-                                    <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">Select class</MenuItem>
-                                        <MenuItem value="Class 1">Class 1</MenuItem>
-                                        <MenuItem value="Class 2">Class 2</MenuItem>
-                                        <MenuItem value="Class 3">Class 3</MenuItem>
-                                    </Select>
-                                )}
-                                name="class"
-                                control={control}
-                                defaultValue=""
-                                rules={{
-                                    required: "Please select class"
-                                }}
-                            />
-                            <FormHelperText>{errors.class?.message}</FormHelperText>
-                        </FormControl>
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Select section</Typography>
-                        <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
-                            <Controller
-                                render={(props) => (
-                                    <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">Select section</MenuItem>
-                                        <MenuItem value="Section A">Section A</MenuItem>
-                                        <MenuItem value="Section B">Section B</MenuItem>
-                                        <MenuItem value="Section C">Section C</MenuItem>
-                                    </Select>
-                                )}
-                                name="section"
-                                control={control}
-                                defaultValue=""
-                                rules={{
-                                    required: "Please select section"
-                                }}
-                            />
-                            <FormHelperText>{errors.section?.message}</FormHelperText>
-                        </FormControl>
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Mobile number</Typography>
                         <TextField
                             id="mob"
@@ -337,83 +262,6 @@ function AdminTeacher() {
                             InputProps={{
                                 startAdornment: <InputAdornment position="start">+91</InputAdornment>,
                             }}
-                        />
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Alternate mobile number</Typography>
-                        <TextField
-                            id="amob"
-                            name="amob"
-                            fullWidth
-                            variant="outlined"
-                            inputRef={register}
-                            InputProps={{
-                                startAdornment: <InputAdornment position="start">+91</InputAdornment>,
-                            }}
-                        />
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Phone</Typography>
-                        <TextField
-                            id="phone"
-                            name="phone"
-                            fullWidth
-                            variant="outlined"
-                            inputRef={register}
-                        />
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Email</Typography>
-                        <TextField
-                            id="email"
-                            name="email"
-                            fullWidth
-                            variant="outlined"
-                            inputRef={register({
-                                required: "Please enter email id",
-                                pattern: {
-                                    value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-                                    message: "Please enter valid email id"
-                                }
-                            })}
-                            error={Boolean(errors.email)}
-                            helperText={errors.email?.message}
-                        />
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Working Hour</Typography>
-                        <FormControl variant="outlined" fullWidth>
-                            <Controller
-                                render={(props) => (
-                                    <Select value={props.value} onChange={props.onChange}>
-                                        <MenuItem value="">--Select Hours--</MenuItem>
-                                        <MenuItem value="Part">Part Time</MenuItem>
-                                        <MenuItem value="Full">Full Time</MenuItem>
-                                    </Select>
-                                )}
-                                name="hour"
-                                control={control}
-                                defaultValue=""
-                            />
-                        </FormControl>
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Username</Typography>
-                        <TextField
-                            id="username"
-                            name="username"
-                            fullWidth
-                            variant="outlined"
-                            inputRef={register({
-                                required: "Please enter username"
-                            })}
-                            error={Boolean(errors.username)}
-                            helperText={errors.username?.message}
                         />
                     </Grid>
 
@@ -447,24 +295,6 @@ function AdminTeacher() {
                     </Grid>
 
                     <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
-                        <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Submitted Documents</Typography>
-                        <FormControl>
-                            <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="cv" checked={cb.cv} onChange={handleCheckbox} />}
-                                label="Curriculam Vitae"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="educer" checked={cb.educer} onChange={handleCheckbox} />}
-                                label="Education Certificate"
-                            />
-                            <FormControlLabel
-                                control={<Checkbox inputRef={register} color="primary" name="excer" checked={cb.excer} onChange={handleCheckbox} />}
-                                label="Experience Certificate"
-                            />
-                        </FormControl>
-                    </Grid>
-
-                    <Grid item direction="column" align="left" xs={12} sm={12} md={4} lg={4}>
                         <Typography variant="h6" color="primary" className={clsx(classes.margin)}>Image</Typography>
                         <Grid item xs={12} container justify="space-between" alignItems="flex-start" spacing={5}>
                             <Grid item>
@@ -488,19 +318,18 @@ function AdminTeacher() {
                     </Grid>
 
                     <Grid item xs={12} sm={12} md={12} lg={12} align="left">
-                        <Button variant="contained" color="primary" type="submit" className={clsx(classes.roundedButton, classes.whiteColor)}>
-                            <Typography variant="h6">{data == null ? "Add Teacher" : "Update Teacher"}</Typography>
+                        <Button variant="contained" color="primary" type="submit" onClick={handleToggle} className={clsx(classes.roundedButton, classes.whiteColor)}>
+                            <Typography variant="h6">Update Profile</Typography>
                         </Button>
                     </Grid>
 
                     <Backdrop className={classes.backdrop} open={open} onClick={handleClose}>
                         <CircularProgress color="inherit" />
                     </Backdrop>
-
                 </Grid>
             </form>
         </Grid>
     );
 }
 
-export default AdminTeacher;
+export default EditAccount;

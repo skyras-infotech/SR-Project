@@ -1,7 +1,6 @@
 import { Grid, makeStyles, TableContainer,TableCell,Table,TableRow,TableBody, Typography } from '@material-ui/core';
 import placeholder from '../../../../Images/placeholder.jpg';
 import React from 'react';
-import clsx from 'clsx';
 import MailIcon from '@material-ui/icons/Mail';
 import CallIcon from '@material-ui/icons/Call';
 import LocationOnIcon from '@material-ui/icons/LocationOn';
@@ -62,21 +61,40 @@ export default function AdminTeacherDetails(prop) {
 
     return(
         <Grid>
-            <Grid container spacing={3} alignItems="flex-end" >
-                    <Grid item>
-                            <img src={placeholder} alt="Img" className={classes.imgOptionsSize}/> 
-                    </Grid>
-                    <Grid item direction="column" align="left">
-                        <Typography variant="h6">{prop.details.fullName}</Typography>
-                        <Grid item container justify="space-between" alignItems="flex-end" >
-                            <MailIcon fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.email}</Typography>
-                            <CallIcon  fontSize="small"/>
-                            <Typography variant="body1" className={clsx(classes.margin)}>{prop.details.mobile}</Typography>
-                            <LocationOnIcon  fontSize="small" />
-                            <Typography variant="body1" className={clsx(classes.margin)}>Navsari</Typography>
+             <Grid container spacing={3} alignItems="flex-end" >
+                <Grid item container xs={12} sm={12} md={2} lg={2}>
+                    <img src={placeholder} alt="Img" className={classes.imgOptionsSize} />
+                </Grid>
+                <Grid item container align="left" xs={12} sm={12} md={10} lg={10}>
+                    <Typography variant="h6">Sumit Gupta</Typography>
+                    <Grid container alignItems="flex-end" >
+                        <Grid item container xs={12} sm={12} md={4} lg={4}>
+                            <Grid item xs={1} sm={1} md={1} lg={1}>
+                                <MailIcon fontSize="small" />
+                            </Grid>
+                            <Grid item xs={11} sm={11} md={11} lg={11}>
+                                <Typography variant="body1">skg@skg.com</Typography>
+                            </Grid>
+                        </Grid>
+                        <Grid item container xs={12} sm={12} md={4} lg={4}>
+                            <Grid item xs={1} sm={1} md={1} lg={1}>
+                                <CallIcon fontSize="small" />
+                            </Grid>
+                            <Grid item xs={11} sm={11} md={11} lg={11}>
+                                <Typography variant="body1">7600965621</Typography>
+                            </Grid>
+
+                        </Grid>
+                        <Grid item container xs={12} sm={12} md={4} lg={4}>
+                            <Grid item xs={1} sm={1} md={1} lg={1}>
+                                <LocationOnIcon fontSize="small" />
+                            </Grid>
+                            <Grid item xs={11} sm={11} md={11} lg={11}>
+                                <Typography variant="body1">Navsari</Typography>
+                            </Grid>
                         </Grid>
                     </Grid>
+                </Grid>
             </Grid>
 
             <Grid container spacing={2} className={classes.maginTop}>
