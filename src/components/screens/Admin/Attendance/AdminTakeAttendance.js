@@ -166,7 +166,7 @@ export default function AdminAttendanceList() {
 
           <Grid item xs={12} sm={12} md={3} lg={3} align="left">
             <Button variant="contained" color="primary" type="submit" onClick={handleToggle} className={clsx(classes.roundedButton, classes.whiteColor)}>
-              <Typography variant="h6">View Attendance</Typography>
+              <Typography variant="h6">Take Attendance</Typography>
             </Button>
           </Grid>
 

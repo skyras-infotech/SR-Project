@@ -2,8 +2,14 @@ import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
-import { Button, Grid, makeStyles, withStyles, Typography, Dialog, DialogContentText, DialogActions } from '@material-ui/core';
+import {
+  Button, Grid, makeStyles, withStyles, Typography, Dialog,
+  DialogContentText, DialogActions
+} from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import img from '../../../../Images/13.png';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,9 +22,23 @@ const useStyles = makeStyles((theme) => ({
   },
   marginBottom: {
     marginBottom: theme.spacing(2),
+  },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.5"
+  },
+  textColor: {
+    color: "cadetblue"
   }
 }));
-
 
 const styles = (theme) => ({
   root: {
@@ -45,6 +65,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminSubjectList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
@@ -110,32 +131,62 @@ export default function AdminSubjectList() {
   const classes = useStyles();
 
   return (
-    <>
-      <div style={{ width: '75%' }} className={classes.root}>
-        <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
-      </div>
-      <div>
+    <div>
+      <Grid>
+        <img src={img} width="30%" height="50%" alt="teacher" className={classes.img} />
+      </Grid>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Subject List</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/subject/add-subject" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Subject</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '100%' }} className={classes.root}>
+          <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+        </div>
+        <div>
 
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this subject {data.subjectName}?
+          <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClickClose}>
+            <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to delete this subject {data.subjectName}?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
-          </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
-          </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteClickClose} color="primary">
+                No
+              </Button>
+              <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Grid>
+
+    </div>
+
   );
 
 }

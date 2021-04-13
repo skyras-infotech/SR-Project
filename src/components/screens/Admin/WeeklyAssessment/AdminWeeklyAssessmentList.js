@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Grid, Select,DialogContentText,DialogActions, makeStyles, Typography, FormControl } from '@material-ui/core';
+import { Button, Grid, Select, DialogContentText, DialogActions, makeStyles, Typography, FormControl } from '@material-ui/core';
 import { MenuItem, FormHelperText } from '@material-ui/core';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
@@ -12,11 +12,13 @@ import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
 import AdminWeeklyAssessmentDetails from "./AdminWeeklyAssessmentDetails";
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     '& .headerStyle': {
-      color: "crimson",
+      color: "orange",
     },
   },
   marginBottom: {
@@ -31,7 +33,13 @@ const useStyles = makeStyles((theme) => ({
     width: theme.spacing(10)
   },
   textColor: {
-    color: "crimson"
+    color: "orange"
+  },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
   }
 }));
 
@@ -68,9 +76,10 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function AdminStudentList() {
+export default function AdminWeeklyAssessmentList() {
 
   const [showList, setShowList] = React.useState(false);
+  const [searchData, setSearchData] = React.useState("");
 
   const { handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => {
@@ -142,128 +151,157 @@ export default function AdminStudentList() {
   ];
 
   const rows = [
-    { id: 1, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 2, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 3, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 4, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 5, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 6, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 7, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 8, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 9, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 10, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 11, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 12, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 13, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 14, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 15, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 16, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 17, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
-    { id: 18, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject:"Maths", topic:"Topic Name", assessmentDate:"05/04/2021" },
+    { id: 1, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 2, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 3, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 4, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 5, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 6, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 7, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 8, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 9, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 10, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 11, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 12, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 13, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 14, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 15, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 16, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 17, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
+    { id: 18, date: "10/03/2021", class: '6', section: 'A', teacher: "Sumit Gupta", subject: "Maths", topic: "Topic Name", assessmentDate: "05/04/2021" },
   ];
 
   return (
-    <Grid container>
-
-      <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
-
-        <Grid item container spacing={2} alignItems="flex-end" className={classes.marginBottom}>
-
-          <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
-            <Typography variant="h6" className={classes.textColor}>Select class</Typography>
-            <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
-              <Controller
-                render={(props) => (
-                  <Select value={props.value} onChange={props.onChange}>
-                    <MenuItem value="">Select class</MenuItem>
-                    <MenuItem value="Class 1">Class 1</MenuItem>
-                    <MenuItem value="Class 2">Class 2</MenuItem>
-                    <MenuItem value="Class 3">Class 3</MenuItem>
-                  </Select>
-                )}
-                name="class"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Please select class"
-                }}
-              />
-              <FormHelperText>{errors.class?.message}</FormHelperText>
-            </FormControl>
-          </Grid>
-
-          <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
-            <Typography variant="h6" className={classes.textColor}>Select section</Typography>
-            <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
-              <Controller
-                render={(props) => (
-                  <Select value={props.value} onChange={props.onChange}>
-                    <MenuItem value="">Select section</MenuItem>
-                    <MenuItem value="Section A">Section A</MenuItem>
-                    <MenuItem value="Section B">Section B</MenuItem>
-                    <MenuItem value="Section C">Section C</MenuItem>
-                  </Select>
-                )}
-                name="section"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Please select section"
-                }}
-              />
-              <FormHelperText>{errors.section?.message}</FormHelperText>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={4} lg={4} align="left">
-            <Button variant="contained" type="submit" className={clsx(classes.roundedButton, classes.textColor, classes.whiteColor)}>
-              <Typography variant="h6">Go</Typography>
-            </Button>
-          </Grid>
-
+    <div>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Assessment List</Typography>
         </Grid>
-      </form>
-      { showList &&
-        <div style={{ width: '100%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
-          <DataGrid
-            autoHeight={true}
-            rows={rows}
-            columns={columns}
-            onRowSelected={(item) => setData(item.data)}
-          />
-        </div>
-      }
-      <div>
-        <Dialog fullWidth maxWidth="sm" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Weekly Assessment Details
-                  </DialogTitle>
-          <DialogContent dividers>
-            <AdminWeeklyAssessmentDetails details={data} />
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this assessment? 
-          </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
-          </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
-          </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </Grid>
+        <Grid item>
+          <Link to="/assessment/add-assessment" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Assessment</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <Grid container>
+
+          <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
+
+            <Grid item container spacing={2} alignItems="flex-end" className={classes.marginBottom}>
+
+              <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
+                <Typography variant="h6" className={classes.textColor}>Select class</Typography>
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
+                  <Controller
+                    render={(props) => (
+                      <Select value={props.value} onChange={props.onChange}>
+                        <MenuItem value="">Select class</MenuItem>
+                        <MenuItem value="Class 1">Class 1</MenuItem>
+                        <MenuItem value="Class 2">Class 2</MenuItem>
+                        <MenuItem value="Class 3">Class 3</MenuItem>
+                      </Select>
+                    )}
+                    name="class"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Please select class"
+                    }}
+                  />
+                  <FormHelperText>{errors.class?.message}</FormHelperText>
+                </FormControl>
+              </Grid>
+
+              <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
+                <Typography variant="h6" className={classes.textColor}>Select section</Typography>
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
+                  <Controller
+                    render={(props) => (
+                      <Select value={props.value} onChange={props.onChange}>
+                        <MenuItem value="">Select section</MenuItem>
+                        <MenuItem value="Section A">Section A</MenuItem>
+                        <MenuItem value="Section B">Section B</MenuItem>
+                        <MenuItem value="Section C">Section C</MenuItem>
+                      </Select>
+                    )}
+                    name="section"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Please select section"
+                    }}
+                  />
+                  <FormHelperText>{errors.section?.message}</FormHelperText>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={4} lg={4} align="left">
+                <Button variant="contained" type="submit" className={clsx(classes.roundedButton, classes.textColor, classes.whiteColor)}>
+                  <Typography variant="h6">Go</Typography>
+                </Button>
+              </Grid>
+
+            </Grid>
+          </form>
+          {showList &&
+            <div style={{ width: '100%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
+              <DataGrid
+                autoHeight={true}
+                rows={rows}
+                columns={columns}
+                onRowSelected={(item) => setData(item.data)}
+              />
+            </div>
+          }
+          <div>
+            <Dialog fullWidth maxWidth="sm" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                Weekly Assessment Details
+            </DialogTitle>
+              <DialogContent dividers>
+                <AdminWeeklyAssessmentDetails details={data} />
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div>
+            <Dialog
+              open={deleteOpen}
+              onClose={handleDeleteClickClose}>
+              <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure want to delete this assessment?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDeleteClickClose} color="primary">
+                  No
+                </Button>
+                <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+        </Grid>
+      </Grid>
+
+    </div>
+
   );
 
 }

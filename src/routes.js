@@ -1,25 +1,25 @@
 import Admin from '../src/components/screens/Admin/Admin'
-import AdminTeacherDash from './components/screens/Admin/Teacher/AdminTeacherDash'
-import AdminStudentDash from '../src/components/screens/Admin/Student/AdminStudentDash';
-import AdminParentDash from '../src/components/screens/Admin/Parent/AdminParentDash';
-import AdminSubjectDash from '../src/components/screens/Admin/Subject/AdminSubjectDash';
-import AdminExamDash from '../src/components/screens/Admin/Exam/AdminExamDash';
+import AdminTeacherList from './components/screens/Admin/Teacher/AdminTeacherList'
+import AdminStudentList from '../src/components/screens/Admin/Student/AdminStudentList';
+import AdminParentList from '../src/components/screens/Admin/Parent/AdminParentList';
+import AdminSubjectList from '../src/components/screens/Admin/Subject/AdminSubjectList';
+import AdminExamList from '../src/components/screens/Admin/Exam/AdminExamList';
 import AdminHostelDash from './components/screens/Admin/Hostel/AdminHostelDash';
-import AdminHomeworkDash from './components/screens/Admin/Homework/AdminHomeworkDash';
-import AdminNoticeboardDash from './components/screens/Admin/Noticeboard/AdminNoticeboardDash';
-import AdminHolidayDash from './components/screens/Admin/Holiday/AdminHolidayDash';
-import AdminAttendanceDash from './components/screens/Admin/Attendance/AdminAttendanceDash';
+import AdminHomeworkList from './components/screens/Admin/Homework/AdminHomeworkList';
+import AdminNoticeboardList from './components/screens/Admin/Noticeboard/AdminNoticeboardList';
+import AdminHolidayList from './components/screens/Admin/Holiday/AdminHolidayList';
+import AdminAttendanceList from './components/screens/Admin/Attendance/AdminAttendanceList';
 import AdminLibraryDash from './components/screens/Admin/Library/AdminLibraryDash';
-import AdminVideoUpdationDash from './components/screens/Admin/Video Updation/AdminVideoUpdationDash';
+import AdminVideoUpdationList from './components/screens/Admin/Video Updation/AdminVideoUpdationList';
 import AdminMessageDash from './components/screens/Admin/Message/AdminMessageDash';
-import AdminMaterialDash from './components/screens/Admin/Material/AdminMaterialDash';
-import AdminTimeTableDash from './components/screens/Admin/TimeTable/AdminTimeTableDash';
-import AdminReportsAndRecordsDash from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsDash';
+import AdminMaterialList from './components/screens/Admin/Material/AdminMaterialList';
+import AdminTimeTableList from './components/screens/Admin/TimeTable/AdminTimeTableList';
+import AdminReportsAndRecordsList from './components/screens/Admin/ReportsAndRecords/AdminReportsAndRecordsList';
 import AccountInfo from './components/screens/Admin/Account/AccountInfo';
-import AdminWeeklyAssessmentDash from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentDash';
-import AdminRemedialDash from './components/screens/Admin/Remedial/AdminRemedialDash';
+import AdminWeeklyAssessmentList from './components/screens/Admin/WeeklyAssessment/AdminWeeklyAssessmentList';
+import AdminRemedialList from './components/screens/Admin/Remedial/AdminRemedialList';
 import AdminOneClickMigration from './components/screens/Admin/OneClickMigration/AdminOneClickMigration';
-import AdminStudyHoursDash from './components/screens/Admin/StudyHours/AdminStudyHoursDash';
+import AdminStudyHoursList from './components/screens/Admin/StudyHours/AdminStudyHoursList';
 
 
 const dashboardRoutes = [
@@ -32,37 +32,37 @@ const dashboardRoutes = [
     {
         path:"/teacher",
         name:"Teacher",
-        components: AdminTeacherDash,
+        components: AdminTeacherList,
         layout:"/admin"
     },
     {
         path:"/students",
         name:"Students",
-        components: AdminStudentDash,
+        components: AdminStudentList,
         layout:"/admin"
     },
     {
         path:"/parents",
         name:"Parent",
-        components: AdminParentDash,
+        components: AdminParentList,
         layout:"/admin"
     },
     {
         path:"/subjects",
         name:"Subject",
-        components: AdminSubjectDash,
+        components: AdminSubjectList,
         layout:"/admin"
     },
     {
         path:"/attendance",
         name:"Attendance",
-        components: AdminAttendanceDash,
+        components: AdminAttendanceList,
         layout:"/admin"
     },
     {
         path:"/exams",
         name:"Exam",
-        components: AdminExamDash,
+        components: AdminExamList,
         layout:"/admin"
     },
     {
@@ -74,19 +74,19 @@ const dashboardRoutes = [
     {
         path:"/homework",
         name:"Homework",
-        components: AdminHomeworkDash,
+        components: AdminHomeworkList,
         layout:"/admin"
     },
     {
         path:"/noticeboard",
         name:"Noticeboard",
-        components: AdminNoticeboardDash,
+        components: AdminNoticeboardList,
         layout:"/admin"
     },
     {
         path:"/holiday",
         name:"Holiday",
-        components: AdminHolidayDash,
+        components: AdminHolidayList,
         layout:"/admin"
     },
     {
@@ -98,19 +98,19 @@ const dashboardRoutes = [
     {
         path:"/timetable",
         name:"Time Table",
-        components: AdminTimeTableDash,
+        components: AdminTimeTableList,
         layout:"/admin"
     },
     {
         path:"/material",
         name:"Material",
-        components: AdminMaterialDash,
+        components: AdminMaterialList,
         layout:"/admin"
     },
     {
         path:"/video-list",
         name:"Video Updation",
-        components: AdminVideoUpdationDash,
+        components: AdminVideoUpdationList,
         layout:"/admin"
     },
     {
@@ -122,25 +122,25 @@ const dashboardRoutes = [
     {
         path:"/remedial",
         name:"Remedial",
-        components: AdminRemedialDash,
+        components: AdminRemedialList,
         layout:"/admin"
     },
     {
         path:"/study-hours",
         name:"Study Hours",
-        components: AdminStudyHoursDash,
+        components: AdminStudyHoursList,
         layout:"/admin"
     },
     {
         path:"/assessment",
         name:"Assessment",
-        components: AdminWeeklyAssessmentDash,
+        components: AdminWeeklyAssessmentList,
         layout:"/admin"
     },
     {
         path:"/reports-and-records",
         name:"Reports & Record",
-        components: AdminReportsAndRecordsDash,
+        components: AdminReportsAndRecordsList,
         layout:"/admin"
     },
     {

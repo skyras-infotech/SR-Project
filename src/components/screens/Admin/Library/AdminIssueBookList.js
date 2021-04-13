@@ -1,7 +1,9 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Grid, makeStyles, DialogContentText, DialogActions, Typography,
-  TableContainer, TableCell, Table, TableRow, TableBody } from '@material-ui/core';
+import {
+  Button, Grid, makeStyles, DialogContentText, DialogActions, Typography,
+  TableContainer, TableCell, Table, TableRow, TableBody
+} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -9,6 +11,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,7 +26,21 @@ const useStyles = makeStyles((theme) => ({
   marginBottom: {
     marginBottom: theme.spacing(2),
   },
-
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.5"
+  },
+  textColor: {
+    color: "crimson"
+  }
 }));
 
 const styles = (theme) => ({
@@ -80,6 +98,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminIssueBookList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -162,17 +181,41 @@ export default function AdminIssueBookList() {
 
   const classes = useStyles();
   return (
-    <>
-      <div style={{ width: '85%' }} className={classes.root}>
-        <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)}/>
-      </div>
-      <div>
-        <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Book Details
+    <div>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Issue Book List</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/library/issue-book" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Issue Book</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '85%' }} className={classes.root}>
+          <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+        </div>
+        <div>
+          <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              Book Details
                   </DialogTitle>
-          <DialogContent dividers>
-          <Grid container>
+            <DialogContent dividers>
+              <Grid container>
                 <TableContainer>
                   <Table className={classes.table} aria-label="simple table">
                     <TableBody>
@@ -203,32 +246,32 @@ export default function AdminIssueBookList() {
                     </TableBody>
                   </Table>
                 </TableContainer>
-            </Grid>
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this issue book from student {data.studentName}?
+              </Grid>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <div>
+          <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClickClose}>
+            <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to delete this issue book from student {data.studentName}?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteClickClose} color="primary">
+                No
           </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
+              <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                Yes
           </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </>
-
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Grid>
+    </div>
   );
 
 }

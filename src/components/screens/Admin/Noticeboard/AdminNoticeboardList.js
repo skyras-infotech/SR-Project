@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Grid, makeStyles, Typography,DialogActions,DialogContentText } from '@material-ui/core';
+import { Button, Grid, makeStyles, Typography, DialogActions, DialogContentText } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
@@ -9,6 +9,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 import AdminNoticeboardDetails from './AdminNoticeboardDetails';
+import img from '../../../../Images/15.png';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +28,21 @@ const useStyles = makeStyles((theme) => ({
   whiteColor: {
     color: "#fff"
   },
-
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 25,
+    right: 25,
+    opacity: "0.5"
+  },
+  textColor: {
+    color: "orange"
+  }
 }));
 
 const styles = (theme) => ({
@@ -64,6 +81,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminNoticeboardList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -145,41 +163,69 @@ export default function AdminNoticeboardList() {
 
   const classes = useStyles();
   return (
-    <>
-      <div style={{ width: '92%' }} className={classes.root}>
-        <DataGrid rows={rows} columns={columns} autoHeight={true}  onRowSelected={(item) => setData(item.data)} />
-      </div>
-      <div>
-        <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Notice Details
+    <div>
+      <Grid>
+        <img src={img} width="20%" height="45%" alt="teacher" className={classes.img} />
+      </Grid>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Noticeboard List</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/noticeboard/add-noticeboard" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Notice</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '100%' }} className={classes.root}>
+          <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+        </div>
+        <div>
+          <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              Notice Details
                   </DialogTitle>
-          <DialogContent dividers>
-            <AdminNoticeboardDetails details={data} />
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this notice {data.title}?
+            <DialogContent dividers>
+              <AdminNoticeboardDetails details={data} />
+            </DialogContent>
+          </Dialog>
+        </div>
+        <div>
+          <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClickClose}>
+            <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to delete this notice {data.title}?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteClickClose} color="primary">
+                No
           </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
+              <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                Yes
           </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </>
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Grid>
+    </div>
   );
 
 }

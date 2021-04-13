@@ -28,18 +28,18 @@ import AdminStudent from './Student/AdminStudent';
 import AdminParent from './Parent/AdminParent';
 import AdminSubject from './Subject/AdminSubject';
 import AdminExam from './Exam/AdminExam';
-import AdminHostelListDash from './Hostel/AdminHostelListDash';
-import AdminBedDash from './Hostel/AdminBedDash';
-import AdminRoomDash from './Hostel/AdminRoomDash';
+import AdminHostelList from './Hostel/AdminHostelList';
+import AdminBedList from './Hostel/AdminBedList';
+import AdminRoomList from './Hostel/AdminRoomList';
 import AdminRoom from './Hostel/AdminRoom';
 import AdminBed from './Hostel/AdminBed';
 import AdminHostel from './Hostel/AdminHostel';
 import AdminNoticeboard from './Noticeboard/AdminNoticeboard';
 import AdminHoliday from './Holiday/AdminHoliday';
 import AdminTakeAttendance from './Attendance/AdminTakeAttendance';
-import AdminBookDash from './Library/AdminBookDash';
-import AdminIssueBookDash from './Library/AdminIssueBookDash';
-import AdminMemberDash from './Library/AdminMemberDash';
+import AdminBookList from './Library/AdminBookList';
+import AdminIssueBookList from './Library/AdminIssueBookList';
+import AdminMemberList from './Library/AdminMemberList';
 import AdminBook from './Library/AdminBook';
 import AdminIssueBook from './Library/AdminIssueBook';
 import AdminHomework from './Homework/AdminHomework';
@@ -292,13 +292,13 @@ function ResponsiveDrawer(props) {
             <AdminRoom />
           </Route>
           <Route exact path="/hostel/hostel-list">
-            <AdminHostelListDash />
+            <AdminHostelList />
           </Route>
           <Route exact path="/bed/bed-list">
-            <AdminBedDash />
+            <AdminBedList />
           </Route>
           <Route exact path="/room/room-list">
-            <AdminRoomDash />
+            <AdminRoomList />
           </Route>
           <Route exact path="/noticeboard/add-noticeboard">
             <AdminNoticeboard />
@@ -316,13 +316,13 @@ function ResponsiveDrawer(props) {
             <AdminTakeAttendance />
           </Route>
           <Route exact path="/library/book-list">
-            <AdminBookDash />
+            <AdminBookList />
           </Route>
           <Route exact path="/library/issue-book-list">
-            <AdminIssueBookDash />
+            <AdminIssueBookList />
           </Route>
           <Route exact path="/library/member-list">
-            <AdminMemberDash />
+            <AdminMemberList />
           </Route>
           <Route exact path="/library/add-book">
             <AdminBook />

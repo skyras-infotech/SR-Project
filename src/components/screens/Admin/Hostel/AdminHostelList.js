@@ -4,6 +4,8 @@ import { Button, Grid, makeStyles, Dialog, DialogContentText, withStyles, Typogr
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import { Link } from 'react-router-dom';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,7 +19,21 @@ const useStyles = makeStyles((theme) => ({
   marginBottom: {
     marginBottom: theme.spacing(2),
   },
-
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.3"
+  },
+  textColor: {
+    color: "blue"
+  }
 }));
 
 const styles = (theme) => ({
@@ -45,6 +61,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminHostelList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
@@ -106,33 +123,57 @@ export default function AdminHostelList() {
 
   const classes = useStyles();
   return (
-    <>
-      <div style={{ width: '70%' }} className={classes.root}>
-        <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
-      </div>
+    <div>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Hostel List</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/hostel/add-hostel" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Hostel</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '100%' }} className={classes.root}>
+          <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+        </div>
 
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this hostel {data.hostelName}?
+        <div>
+          <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClickClose}>
+            <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to delete this hostel {data.hostelName}?
             </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteClickClose} color="primary">
+                No
             </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
+              <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                Yes
             </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </>
-
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Grid>
+    </div>
   );
 
 }

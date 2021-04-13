@@ -10,6 +10,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import SearchBar from "material-ui-search-bar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,21 @@ const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 300,
   },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.5"
+  },
+  textColor: {
+    color: "crimson"
+  }
 }));
 
 const StyledTableCell = withStyles((theme) => ({
@@ -82,6 +98,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminMemberList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -154,60 +171,78 @@ export default function AdminMemberList() {
 
   const classes = useStyles();
   return (
-    <>
-      <div style={{ width: '75%' }} className={classes.root}>
-        <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
-      </div>
-      <div>
-        <Dialog fullWidth maxWidth="sm" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Member Details
+    <div>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Member List</Typography>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '100%' }} className={classes.root}>
+          <DataGrid rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+        </div>
+        <div>
+          <Dialog fullWidth maxWidth="sm" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+            <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+              Member Details
                   </DialogTitle>
-          <DialogContent dividers>
-            <Grid container>
-              <TableContainer>
-                <Table className={classes.table} aria-label="simple table">
-                  <TableBody>
-                    <StyledTableRow key={data.rollNo}>
-                      <StyledTableCell >Roll No : {data.rollNo}</StyledTableCell>
-                    </StyledTableRow>
-                    <StyledTableRow key={data.fullName}>
-                      <StyledTableCell >Member Name : {data.fullName}</StyledTableCell>
-                    </StyledTableRow>
-                    <StyledTableRow key={data.email}>
-                      <StyledTableCell >Member Email : {data.email}</StyledTableCell>
-                    </StyledTableRow>
-                    <StyledTableRow key={data.class}>
-                      <StyledTableCell >Class : {data.class}</StyledTableCell>
-                    </StyledTableRow>
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Grid>
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this member {data.fullName}?
+            <DialogContent dividers>
+              <Grid container>
+                <TableContainer>
+                  <Table className={classes.table} aria-label="simple table">
+                    <TableBody>
+                      <StyledTableRow key={data.rollNo}>
+                        <StyledTableCell >Roll No : {data.rollNo}</StyledTableCell>
+                      </StyledTableRow>
+                      <StyledTableRow key={data.fullName}>
+                        <StyledTableCell >Member Name : {data.fullName}</StyledTableCell>
+                      </StyledTableRow>
+                      <StyledTableRow key={data.email}>
+                        <StyledTableCell >Member Email : {data.email}</StyledTableCell>
+                      </StyledTableRow>
+                      <StyledTableRow key={data.class}>
+                        <StyledTableCell >Class : {data.class}</StyledTableCell>
+                      </StyledTableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
+            </DialogContent>
+          </Dialog>
+        </div>
+        <div>
+          <Dialog
+            open={deleteOpen}
+            onClose={handleDeleteClickClose}>
+            <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-description">
+                Are you sure want to delete this member {data.fullName}?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleDeleteClickClose} color="primary">
+                No
           </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
+              <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                Yes
           </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </>
+            </DialogActions>
+          </Dialog>
+        </div>
+      </Grid>
+
+    </div>
   );
 
 }

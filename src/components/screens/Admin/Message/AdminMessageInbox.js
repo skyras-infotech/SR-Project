@@ -1,8 +1,9 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Grid, InputBase, DialogContentText, DialogActions, makeStyles, Typography,
-  TableContainer, TableCell, Table, TableRow, TableBody } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import {
+  Button, Grid, DialogContentText, DialogActions, makeStyles, Typography,
+  TableContainer, TableCell, Table, TableRow, TableBody
+} from '@material-ui/core';
 import clsx from 'clsx';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
@@ -10,6 +11,7 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
+import SearchBar from "material-ui-search-bar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,6 +90,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminMessageInbox() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -168,19 +171,18 @@ export default function AdminMessageInbox() {
           <Typography variant="h4" className={classes.textColor}>Inbox</Typography>
         </Grid>
         <Grid item>
-          <Grid container alignItems="center" className={classes.searchBox}>
-            <SearchIcon className={classes.searchIconColor} />
-            <InputBase
-              className={classes.paddingLeft}
-              id="search"
-              name="search"
-              placeholder="Search...."
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
             />
           </Grid>
         </Grid>
       </Grid>
 
-      <div style={{ width: '85%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
+      <div style={{ width: '100%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
         <DataGrid
           autoHeight={true}
           rows={rows}
@@ -192,7 +194,7 @@ export default function AdminMessageInbox() {
       <div>
         <Dialog fullWidth maxWidth="md" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Inbox Message ({data.subject})
+            Inbox Message ({data.subject})
                   </DialogTitle>
           <DialogContent dividers>
             <Grid container>

@@ -9,6 +9,8 @@ import MuiDialogContent from '@material-ui/core/DialogContent';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +31,12 @@ const useStyles = makeStyles((theme) => ({
   },
   textColor: {
     color: "crimson"
+  },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
   }
 }));
 
@@ -65,9 +73,10 @@ const DialogContent = withStyles((theme) => ({
   },
 }))(MuiDialogContent);
 
-export default function AdminStudentList() {
+export default function AdminStudyHoursList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [deleteOpen, setDeleteOpen] = React.useState(false);
 
@@ -131,36 +140,65 @@ export default function AdminStudentList() {
   ];
 
   return (
-    <Grid container>
-      <div style={{ width: '100%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
-        <DataGrid
-          autoHeight={true}
-          rows={rows}
-          columns={columns}
-          onRowSelected={(item) => setData(item.data)}
-        />
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this?
+    <div>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Study Hours Timetable</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/study-hours/add-study-hours" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Study Hours</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <Grid container>
+          <div style={{ width: '100%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
+            <DataGrid
+              autoHeight={true}
+              rows={rows}
+              columns={columns}
+              onRowSelected={(item) => setData(item.data)}
+            />
+          </div>
+          <div>
+            <Dialog
+              open={deleteOpen}
+              onClose={handleDeleteClickClose}>
+              <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure want to delete this?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDeleteClickClose} color="primary">
+                  No
           </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
+                <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                  Yes
           </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </Grid>
+              </DialogActions>
+            </Dialog>
+          </div>
+        </Grid>
+      </Grid>
+
+    </div>
+
   );
 
 }

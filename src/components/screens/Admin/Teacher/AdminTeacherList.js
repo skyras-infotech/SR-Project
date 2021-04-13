@@ -10,6 +10,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import img from '../../../../Images/11.png';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +20,21 @@ const useStyles = makeStyles({
       color: "blueviolet",
     },
   },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.5"
+  },
+  textColor: {
+    color: "blueviolet"
+  }
 });
 
 const styles = (theme) => ({
@@ -29,7 +47,7 @@ const styles = (theme) => ({
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
-  },
+  }
 });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -55,6 +73,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminTeacherList() {
 
   const [data, setData] = React.useState("");
+  const [searchData, setSearchData] = React.useState("");
 
   const [open, setOpen] = React.useState(false);
 
@@ -135,38 +154,68 @@ export default function AdminTeacherList() {
   const classes = useStyles();
   return (
 
-    <div style={{ width: '80%' }} className={classes.root}>
-      <DataGrid pagination rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
-      <div>
-        <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Teacher Details
+    <div>
+      <Grid>
+        <img src={img} width="30%" height="50%" alt="teacher" className={classes.img} />
+      </Grid>
+      <Grid container xs={12} justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Teacher List</Typography>
+        </Grid>
+        <Grid item>
+          <Link to="/teacher/add-teacher" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Teacher</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <div style={{ width: '100%' }} className={classes.root}>
+          <DataGrid pagination rows={rows} columns={columns} autoHeight={true} onRowSelected={(item) => setData(item.data)} />
+          <div>
+            <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                Teacher Details
                   </DialogTitle>
-          <DialogContent dividers>
-            <AdminTeacherDetails details={data} />
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this teacher {data.fullName}?
+              <DialogContent dividers>
+                <AdminTeacherDetails details={data} />
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div>
+            <Dialog
+              open={deleteOpen}
+              onClose={handleDeleteClickClose}>
+              <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure want to delete this teacher {data.fullName}?
           </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
-          </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
-          </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDeleteClickClose} color="primary">
+                  No
+                </Button>
+                <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                  Yes
+               </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+        </div>
+      </Grid>
     </div>
   );
 

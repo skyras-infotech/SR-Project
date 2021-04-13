@@ -1,6 +1,6 @@
 import React from 'react';
 import { DataGrid } from '@material-ui/data-grid';
-import { Button, Grid, Select,DialogContentText,DialogActions, makeStyles, Typography, FormControl } from '@material-ui/core';
+import { Button, Grid, Select, DialogContentText, DialogActions, makeStyles, Typography, FormControl } from '@material-ui/core';
 import { MenuItem, FormHelperText } from '@material-ui/core';
 import clsx from 'clsx';
 import AdminStudentDetails from './AdminStudentDetails';
@@ -12,6 +12,9 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
 import { useForm, Controller } from 'react-hook-form';
+import img from '../../../../Images/12.png';
+import SearchBar from "material-ui-search-bar";
+import AddBoxRoundedIcon from '@material-ui/icons/AddBoxRounded';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +35,18 @@ const useStyles = makeStyles((theme) => ({
   },
   textColor: {
     color: "crimson"
+  },
+  searchBox: {
+    borderRadius: "20px",
+    padding: "5px 10px",
+    backgroundColor: "#ffefec",
+    color: "white"
+  },
+  img: {
+    position: "fixed",
+    bottom: 0,
+    right: 0,
+    opacity: "0.5"
   }
 }));
 
@@ -71,6 +86,7 @@ const DialogContent = withStyles((theme) => ({
 export default function AdminStudentList() {
 
   const [showList, setShowList] = React.useState(false);
+  const [searchData, setSearchData] = React.useState("");
 
   const { handleSubmit, control, errors } = useForm();
   const onSubmit = (data) => {
@@ -160,108 +176,137 @@ export default function AdminStudentList() {
   ];
 
   return (
-    <Grid container>
-
-      <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
-
-        <Grid item container spacing={2} alignItems="flex-end" className={classes.marginBottom}>
-
-          <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
-            <Typography variant="h6" className={classes.textColor}>Select class</Typography>
-            <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
-              <Controller
-                render={(props) => (
-                  <Select value={props.value} onChange={props.onChange}>
-                    <MenuItem value="">Select class</MenuItem>
-                    <MenuItem value="Class 1">Class 1</MenuItem>
-                    <MenuItem value="Class 2">Class 2</MenuItem>
-                    <MenuItem value="Class 3">Class 3</MenuItem>
-                  </Select>
-                )}
-                name="class"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Please select class"
-                }}
-              />
-              <FormHelperText>{errors.class?.message}</FormHelperText>
-            </FormControl>
-          </Grid>
-
-          <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
-            <Typography variant="h6" className={classes.textColor}>Select section</Typography>
-            <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
-              <Controller
-                render={(props) => (
-                  <Select value={props.value} onChange={props.onChange}>
-                    <MenuItem value="">Select section</MenuItem>
-                    <MenuItem value="Section A">Section A</MenuItem>
-                    <MenuItem value="Section B">Section B</MenuItem>
-                    <MenuItem value="Section C">Section C</MenuItem>
-                  </Select>
-                )}
-                name="section"
-                control={control}
-                defaultValue=""
-                rules={{
-                  required: "Please select section"
-                }}
-              />
-              <FormHelperText>{errors.section?.message}</FormHelperText>
-            </FormControl>
-          </Grid>
-
-          <Grid item xs={12} sm={12} md={4} lg={4} align="left">
-            <Button variant="contained" type="submit" className={clsx(classes.roundedButton, classes.textColor, classes.whiteColor)}>
-              <Typography variant="h6">Go</Typography>
-            </Button>
-          </Grid>
-
+    <div>
+      <Grid>
+        <img src={img} width="30%" height="50%" alt="teacher" className={classes.img} />
+      </Grid>
+      <Grid container justify="space-between" alignItems="center">
+        <Grid item>
+          <Typography variant="h4" className={classes.textColor}>Student List</Typography>
         </Grid>
-      </form>
-      { showList &&
-        <div style={{ width: '85%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
-          <DataGrid
-            autoHeight={true}
-            rows={rows}
-            columns={columns}
-            onRowSelected={(item) => setData(item.data)}
-          />
-        </div>
-      }
-      <div>
-        <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-          <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-            Student Details
-                  </DialogTitle>
-          <DialogContent dividers>
-            <AdminStudentDetails details={data} />
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div>
-        <Dialog
-          open={deleteOpen}
-          onClose={handleDeleteClickClose}>
-          <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              Are you sure want to delete this teacher {data.fullName}? 
-          </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleDeleteClickClose} color="primary">
-              No
-          </Button>
-            <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
-              Yes
-          </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
-    </Grid>
-  );
+        <Grid item>
+          <Link to="/student/add-student" style={{ textDecoration: "none" }}>
+            <Grid container xs alignItems="center" className={classes.textColor} style={{ cursor: "pointer" }}>
+              <AddBoxRoundedIcon fontSize="large" />
+              <Typography variant="h6">Add Student</Typography>
+            </Grid>
+          </Link>
+        </Grid>
+        <Grid item>
+        <Grid container xs alignItems="center" >
+            <SearchBar
+              className={classes.searchBox}
+              value={searchData}
+              onChange={(newValue) => setSearchData(newValue)}
+              onRequestSearch={() => console.log(searchData)}
+            />
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid style={{ marginTop: "20px" }}>
+        <Grid container>
 
+          <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
+
+            <Grid item container spacing={2} alignItems="flex-end" className={classes.marginBottom}>
+
+              <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
+                <Typography variant="h6" className={classes.textColor}>Select class</Typography>
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.class)}>
+                  <Controller
+                    render={(props) => (
+                      <Select value={props.value} onChange={props.onChange}>
+                        <MenuItem value="">Select class</MenuItem>
+                        <MenuItem value="Class 1">Class 1</MenuItem>
+                        <MenuItem value="Class 2">Class 2</MenuItem>
+                        <MenuItem value="Class 3">Class 3</MenuItem>
+                      </Select>
+                    )}
+                    name="class"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Please select class"
+                    }}
+                  />
+                  <FormHelperText>{errors.class?.message}</FormHelperText>
+                </FormControl>
+              </Grid>
+
+              <Grid item align="left" xs={12} sm={12} md={4} lg={4}>
+                <Typography variant="h6" className={classes.textColor}>Select section</Typography>
+                <FormControl variant="outlined" fullWidth error={Boolean(errors.section)}>
+                  <Controller
+                    render={(props) => (
+                      <Select value={props.value} onChange={props.onChange}>
+                        <MenuItem value="">Select section</MenuItem>
+                        <MenuItem value="Section A">Section A</MenuItem>
+                        <MenuItem value="Section B">Section B</MenuItem>
+                        <MenuItem value="Section C">Section C</MenuItem>
+                      </Select>
+                    )}
+                    name="section"
+                    control={control}
+                    defaultValue=""
+                    rules={{
+                      required: "Please select section"
+                    }}
+                  />
+                  <FormHelperText>{errors.section?.message}</FormHelperText>
+                </FormControl>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={4} lg={4} align="left">
+                <Button variant="contained" type="submit" className={clsx(classes.roundedButton, classes.textColor, classes.whiteColor)}>
+                  <Typography variant="h6">Go</Typography>
+                </Button>
+              </Grid>
+
+            </Grid>
+          </form>
+          {showList &&
+            <div style={{ width: '1005%', marginTop: "20px" }} className={clsx(classes.root, classes.marginBottom)}>
+              <DataGrid
+                autoHeight={true}
+                rows={rows}
+                columns={columns}
+                onRowSelected={(item) => setData(item.data)}
+              />
+            </div>
+          }
+          <div>
+            <Dialog fullWidth maxWidth="lg" onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+              <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+                Student Details
+            </DialogTitle>
+              <DialogContent dividers>
+                <AdminStudentDetails details={data} />
+              </DialogContent>
+            </Dialog>
+          </div>
+          <div>
+            <Dialog
+              open={deleteOpen}
+              onClose={handleDeleteClickClose}>
+              <DialogTitle id="alert-dialog-title">Alert! Are you sure?</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Are you sure want to delete this teacher {data.fullName}?
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleDeleteClickClose} color="primary">
+                  No
+               </Button>
+                <Button onClick={handleDeleteClickClose} color="primary" autoFocus>
+                  Yes
+                </Button>
+              </DialogActions>
+            </Dialog>
+          </div>
+        </Grid>
+      </Grid>
+    </div>
+  );
 }
 
